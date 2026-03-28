@@ -7,10 +7,10 @@ import OmMigPage from "./pages/OmMigPage.jsx";
 export default function App() {
   return (
     <Routes>
-      <Route element={<SiteShell />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/om-hypnos" element={<OmHypnosPage />} />
-        <Route path="/om-mig" element={<OmMigPage />} />
+      <Route path="/" element={<SiteShell />}>
+        <Route index element={<HomePage />} />
+        <Route path="om-hypnos" element={<OmHypnosPage />} />
+        <Route path="om-mig" element={<OmMigPage />} />
       </Route>
     </Routes>
   );
