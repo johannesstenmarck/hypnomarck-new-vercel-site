@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!api/|assets/|background\\.jpg$|profile\\.jpg$|vite\\.svg$).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

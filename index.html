@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+    <script>
+      const url = new URL(window.location.href);
+      const theme = url.searchParams.get("theme");
+      if (theme) {
+        document.documentElement.classList.add(theme);
+      }
+    </script>
+    <script>
+      (function (d, s, id) {
+        var js;
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://embedsocial.com/cdn/ht.js";
+        d.getElementsByTagName("head")[0].appendChild(js);
+      })(document, "script", "EmbedSocialHashtagScript");
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        function refreshEmbedSocial() {
+          var widget = document.querySelector(".embedsocial-hashtag");
+          if (!widget) return;
+          if (widget.children.length > 0) return;
+
+          var oldScript = document.getElementById("EmbedSocialHashtagScript");
+          if (oldScript && oldScript.parentNode) {
+            oldScript.parentNode.removeChild(oldScript);
+          }
+
+          var script = document.createElement("script");
+          script.id = "EmbedSocialHashtagScript";
+          script.src = "https://embedsocial.com/cdn/ht.js?v=" + Date.now();
+          document.head.appendChild(script);
+        }
+
+        window.addEventListener("load", function () {
+          setTimeout(refreshEmbedSocial, 1200);
+          setTimeout(refreshEmbedSocial, 3000);
+        });
+      })();
+    </script>
+  </body>
+</html>
