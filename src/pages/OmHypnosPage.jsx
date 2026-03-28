@@ -1,4 +1,7 @@
 import { useOutletContext } from "react-router-dom";
+import Seo from "../components/Seo.jsx";
+import { PAGE_SEO } from "../seo/pageMeta.js";
+import { getBreadcrumbJsonLd } from "../seo/homeJsonLd.js";
 
 const faqItems = [
   {
@@ -98,7 +101,20 @@ export default function OmHypnosPage() {
   const { openBooking } = useOutletContext();
 
   return (
-    <div className="relative z-10 pt-28 pb-16 px-4">
+    <>
+      <Seo
+        title={PAGE_SEO.omHypnos.title}
+        description={PAGE_SEO.omHypnos.description}
+        path={PAGE_SEO.omHypnos.path}
+        keywords={PAGE_SEO.omHypnos.keywords}
+        jsonLd={[
+          getBreadcrumbJsonLd([
+            { name: "Hem", path: "/" },
+            { name: "Vad är hypnos?", path: "/om-hypnos" }
+          ])
+        ]}
+      />
+      <div className="relative z-10 pt-28 pb-16 px-4">
       <div className="max-w-4xl mx-auto space-y-12">
         <div className="bg-emerald-950/60 backdrop-blur-md rounded-2xl p-6 md:p-10 border border-emerald-700/30 space-y-10">
           <header className="text-center space-y-4">
@@ -276,5 +292,6 @@ export default function OmHypnosPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

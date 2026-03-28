@@ -1,5 +1,8 @@
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Seo from "../components/Seo.jsx";
+import { PAGE_SEO } from "../seo/pageMeta.js";
+import { getHomeJsonLd } from "../seo/homeJsonLd.js";
 
 export default function HomePage() {
   const { openBooking } = useOutletContext();
@@ -10,6 +13,13 @@ export default function HomePage() {
 
   return (
     <>
+      <Seo
+        title={PAGE_SEO.home.title}
+        description={PAGE_SEO.home.description}
+        path={PAGE_SEO.home.path}
+        keywords={PAGE_SEO.home.keywords}
+        jsonLd={[getHomeJsonLd()]}
+      />
       <section id="home" className="pt-24 pb-32 sm:pb-16 md:pt-32 md:pb-24 px-4 relative min-h-[100vh] sm:min-h-[85vh] flex items-center z-10">
         <div className="max-w-4xl mx-auto text-center w-full">
           <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 leading-tight drop-shadow-lg">

@@ -1,10 +1,26 @@
 import { useOutletContext } from "react-router-dom";
+import Seo from "../components/Seo.jsx";
+import { PAGE_SEO } from "../seo/pageMeta.js";
+import { getBreadcrumbJsonLd } from "../seo/homeJsonLd.js";
 
 export default function OmMigPage() {
   const { openBooking } = useOutletContext();
 
   return (
-    <div className="relative z-10 pt-28 pb-16 px-4">
+    <>
+      <Seo
+        title={PAGE_SEO.omMig.title}
+        description={PAGE_SEO.omMig.description}
+        path={PAGE_SEO.omMig.path}
+        keywords={PAGE_SEO.omMig.keywords}
+        jsonLd={[
+          getBreadcrumbJsonLd([
+            { name: "Hem", path: "/" },
+            { name: "Om mig", path: "/om-mig" }
+          ])
+        ]}
+      />
+      <div className="relative z-10 pt-28 pb-16 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="bg-emerald-950/60 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-emerald-700/30 mb-16">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -62,5 +78,6 @@ export default function OmMigPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
