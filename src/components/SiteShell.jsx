@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, Outlet } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { useLocation, Outlet } from "react-router-dom";
 import SiteNav from "./SiteNav.jsx";
 import SiteFooter from "./SiteFooter.jsx";
 import BookingModal from "./BookingModal.jsx";
