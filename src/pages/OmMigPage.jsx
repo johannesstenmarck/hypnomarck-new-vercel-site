@@ -5,20 +5,31 @@ export default function OmMigPage() {
 
   return (
     <div className="relative z-10 pt-28 pb-16 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="bg-emerald-950/60 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-emerald-700/30 mb-16">
-          <h1 className="text-3xl md:text-5xl font-serif text-white drop-shadow-lg mb-8 font-medium text-center md:text-left">Om mig</h1>
-          <div className="space-y-4 text-white leading-relaxed drop-shadow-md text-lg md:text-xl font-medium">
-            <p>
-              Johannes Stenmarck heter jag och jag är certifierad hypnoterapeut och coach med passion för att hjälpa människor hitta sin inre klarhet och kraft
-              att förändra sina liv.
-            </p>
-            <p>
-              Mitt arbete handlar om att skapa utrymme för läkning – att hjälpa dig övervinna kreativa och emotionella blockeringar, stärka din självkänsla och
-              självförtroende, och fördjupa dina relationer.
-            </p>
-            <p>Jag tror på förändring som sker inifrån – genom kontakt med det undermedvetna, där dina verkliga resurser finns.</p>
-            <p className="text-white/90 pt-2">Mer om mig, min bakgrund, utbildning och filosofi kommer snart.</p>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="order-1 md:order-1">
+              <img
+                src="/profile.jpg"
+                alt="Johannes Stenmarck, hypnoterapeut"
+                className="w-full rounded-lg border-2 border-emerald-700/40 shadow-xl"
+              />
+            </div>
+            <div className="order-2 md:order-2">
+              <h1 className="text-3xl md:text-5xl font-serif text-white drop-shadow-lg mb-8 font-medium text-center md:text-left">Om mig</h1>
+              <div className="space-y-4 text-white leading-relaxed drop-shadow-md text-lg md:text-xl font-medium">
+                <p>
+                  Johannes Stenmarck heter jag och jag är certifierad hypnoterapeut och coach med passion för att hjälpa människor hitta sin inre klarhet och
+                  kraft att förändra sina liv.
+                </p>
+                <p>
+                  Mitt arbete handlar om att skapa utrymme för läkning – att hjälpa dig övervinna kreativa och emotionella blockeringar, stärka din självkänsla
+                  och självförtroende, och fördjupa dina relationer.
+                </p>
+                <p>Jag tror på förändring som sker inifrån – genom kontakt med det undermedvetna, där dina verkliga resurser finns.</p>
+                <p className="text-white/90 pt-2">Mer om mig, min bakgrund, utbildning och filosofi kommer snart.</p>
+              </div>
+            </div>
           </div>
         </div>
 
