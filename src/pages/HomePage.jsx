@@ -69,7 +69,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-5xl font-serif text-center text-white drop-shadow-lg mb-4">Hur fungerar hypnoterapi?</h2>
             <p className="text-center text-white text-lg md:text-xl drop-shadow-md font-medium">
               Hypnoterapi är ett vetenskapligt förankrat sätt att arbeta med det undermedvetna – där dina mönster, känslor och reaktioner har sina rötter. Jag
-              hjälper dig att nå bestäende förändring på djupet, inte bara på ytan.
+              hjälper dig att nå bestående förändring på djupet, inte bara på ytan.
             </p>
           </div>
 
