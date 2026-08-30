@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
@@ -6,7 +7,65 @@ import { getHomeJsonLd } from "../seo/homeJsonLd.js";
 
 export default function HomePage() {
   const { openBooking } = useOutletContext();
+  const [cookieConsent, setCookieConsent] = useState(() => {
+    return localStorage.getItem("cookieConsent");
+  });
 
+  useEffect(() => {
+    const handleConsentChange = (event) => {
+      setCookieConsent(
+        event.detail?.consent || localStorage.getItem("cookieConsent")
+      );
+    };
+
+    window.addEventListener(
+      "cookie-consent-changed",
+      handleConsentChange
+    );
+
+    return () => {
+      window.removeEventListener(
+        "cookie-consent-changed",
+        handleConsentChange
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    const widget = document.querySelector(".embedsocial-hashtag");
+    const existingScript = document.getElementById(
+      "EmbedSocialHashtagScript"
+    );
+
+    if (cookieConsent !== "granted") {
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      if (widget) {
+        widget.innerHTML = "";
+      }
+
+      return;
+    }
+
+    if (!widget) return;
+
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement("script");
+    script.id = "EmbedSocialHashtagScript";
+    script.src = "https://embedsocial.com/cdn/ht.js";
+    script.async = true;
+
+    document.head.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
+  }, [cookieConsent]);
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
