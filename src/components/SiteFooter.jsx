@@ -67,9 +67,13 @@ export default function SiteFooter() {
               <a href="#" className="block hover:text-white transition drop-shadow-md">
                 Integritetspolicy
               </a>
-              <a href="#" className="block hover:text-white transition drop-shadow-md">
-                Cookies
-              </a>
+              <button
+  type="button"
+  onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))}
+  className="block hover:text-white transition drop-shadow-md text-left"
+>
+  Cookie-inställningar
+</button>
               <a href="#" className="block hover:text-white transition drop-shadow-md">
                 Disclaimer
               </a>
