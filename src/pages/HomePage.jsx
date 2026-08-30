@@ -603,8 +603,33 @@ export default function HomePage() {
           </div>
 
           <div className="mb-12">
-            <div className="embedsocial-hashtag" data-ref="4bd2d9425a169a55e74472684668c188e96c21dc" />
-          </div>
+  {cookieConsent === "granted" ? (
+    <div
+      className="embedsocial-hashtag"
+      data-ref="4bd2d9425a169a55e74472684668c188e96c21dc"
+    />
+  ) : (
+    <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      <div className="bg-emerald-950/60 backdrop-blur-md rounded-lg p-6 border border-emerald-700/30">
+        <p className="text-white text-lg font-medium">
+          Tankar om självkänsla, relationer och förändring.
+        </p>
+      </div>
+
+      <div className="bg-emerald-950/60 backdrop-blur-md rounded-lg p-6 border border-emerald-700/30">
+        <p className="text-white text-lg font-medium">
+          Perspektiv på vår inre värld och de delar som försöker skydda oss.
+        </p>
+      </div>
+
+      <div className="bg-emerald-950/60 backdrop-blur-md rounded-lg p-6 border border-emerald-700/30">
+        <p className="text-white text-lg font-medium">
+          Inspiration och verktyg för mer närvaro, frihet och kontakt.
+        </p>
+      </div>
+    </div>
+  )}
+</div>
 
           <div className="text-center">
             <p className="text-white text-lg mb-2 drop-shadow-lg font-medium">Har du frågor?</p>
