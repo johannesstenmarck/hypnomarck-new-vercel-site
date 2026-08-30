@@ -51,13 +51,22 @@ const rejectAnalytics = () => {
   localStorage.setItem("cookieConsent", "denied");
   updateGoogleConsent("denied");
 
+  // Ta bort befintliga Google Analytics-cookies när samtycke återkallas
+  document.cookie.split(";").forEach((cookie) => {
+    const cookieName = cookie.split("=")[0].trim();
+
+    if (cookieName === "_ga" || cookieName.startsWith("_ga_")) {
+      document.cookie = `${cookieName}=; Max-Age=0; path=/`;
+    }
+  });
+
   window.dispatchEvent(
     new CustomEvent("cookie-consent-changed", {
       detail: { consent: "denied" },
     })
   );
 
-  setShowBanner(false);
+  window.location.reload();
 };
 
   if (!showBanner) return null;
