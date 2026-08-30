@@ -274,7 +274,7 @@ export default function OmHypnosPage() {
             <iframe
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/FYSi_FQKrp8"
+              src="https://www.youtube-nocookie.com/embed/FYSi_FQKrp8"
               title="Gratis hypnos session"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
