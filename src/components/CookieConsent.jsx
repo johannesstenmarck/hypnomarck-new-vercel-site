@@ -35,16 +35,30 @@ export default function CookieConsent() {
 }, []);
 
   const acceptAnalytics = () => {
-    localStorage.setItem("cookieConsent", "granted");
-    updateGoogleConsent("granted");
-    setShowBanner(false);
-  };
+  localStorage.setItem("cookieConsent", "granted");
+  updateGoogleConsent("granted");
 
-  const rejectAnalytics = () => {
-    localStorage.setItem("cookieConsent", "denied");
-    updateGoogleConsent("denied");
-    setShowBanner(false);
-  };
+  window.dispatchEvent(
+    new CustomEvent("cookie-consent-changed", {
+      detail: { consent: "granted" },
+    })
+  );
+
+  setShowBanner(false);
+};
+
+const rejectAnalytics = () => {
+  localStorage.setItem("cookieConsent", "denied");
+  updateGoogleConsent("denied");
+
+  window.dispatchEvent(
+    new CustomEvent("cookie-consent-changed", {
+      detail: { consent: "denied" },
+    })
+  );
+
+  setShowBanner(false);
+};
 
   if (!showBanner) return null;
 
