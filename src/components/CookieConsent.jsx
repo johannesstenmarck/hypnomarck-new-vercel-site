@@ -60,14 +60,14 @@ export default function CookieConsent() {
         <div className="flex flex-wrap gap-3">
           <button
             onClick={acceptAnalytics}
-            className="rounded-md bg-black px-4 py-2 text-white"
+            className="rounded-md border border-gray-500 px-4 py-2 text-gray-800"
           >
             Godkänn statistik
           </button>
 
           <button
             onClick={rejectAnalytics}
-            className="rounded-md border border-gray-400 px-4 py-2"
+            className="rounded-md border border-gray-500 px-4 py-2 text-gray-800"
           >
             Neka
           </button>
