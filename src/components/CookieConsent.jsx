@@ -15,14 +15,24 @@ export default function CookieConsent() {
   };
 
   useEffect(() => {
-    const savedConsent = localStorage.getItem("cookieConsent");
+  const savedConsent = localStorage.getItem("cookieConsent");
 
-    if (!savedConsent) {
-      setShowBanner(true);
-    } else {
-      updateGoogleConsent(savedConsent);
-    }
-  }, []);
+  if (!savedConsent) {
+    setShowBanner(true);
+  } else {
+    updateGoogleConsent(savedConsent);
+  }
+
+  const openCookieSettings = () => {
+    setShowBanner(true);
+  };
+
+  window.addEventListener("open-cookie-settings", openCookieSettings);
+
+  return () => {
+    window.removeEventListener("open-cookie-settings", openCookieSettings);
+  };
+}, []);
 
   const acceptAnalytics = () => {
     localStorage.setItem("cookieConsent", "granted");
