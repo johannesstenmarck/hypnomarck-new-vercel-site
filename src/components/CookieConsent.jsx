@@ -1,73 +1,21 @@
 import { useEffect, useState } from "react";
+import { consent, useCookieConsent } from "../useCookieConsent.js";
 
 export default function CookieConsent() {
-  const [showBanner, setShowBanner] = useState(false);
-
-  const updateGoogleConsent = (consent) => {
-    if (typeof window.gtag !== "function") return;
-
-    window.gtag("consent", "update", {
-      analytics_storage: consent === "granted" ? "granted" : "denied",
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-    });
-  };
+  const cookieConsent = useCookieConsent();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const showBanner = settingsOpen || cookieConsent === null;
 
   useEffect(() => {
-  const savedConsent = localStorage.getItem("cookieConsent");
+    const openCookieSettings = () => setSettingsOpen(true);
+    window.addEventListener("open-cookie-settings", openCookieSettings);
+    return () => window.removeEventListener("open-cookie-settings", openCookieSettings);
+  }, []);
 
-  if (!savedConsent) {
-    setShowBanner(true);
-  } else {
-    updateGoogleConsent(savedConsent);
-  }
-
-  const openCookieSettings = () => {
-    setShowBanner(true);
+  const chooseConsent = (value) => {
+    consent.setChoice(value);
+    setSettingsOpen(false);
   };
-
-  window.addEventListener("open-cookie-settings", openCookieSettings);
-
-  return () => {
-    window.removeEventListener("open-cookie-settings", openCookieSettings);
-  };
-}, []);
-
-  const acceptAnalytics = () => {
-  localStorage.setItem("cookieConsent", "granted");
-  updateGoogleConsent("granted");
-
-  window.dispatchEvent(
-    new CustomEvent("cookie-consent-changed", {
-      detail: { consent: "granted" },
-    })
-  );
-
-  setShowBanner(false);
-};
-
-const rejectAnalytics = () => {
-  localStorage.setItem("cookieConsent", "denied");
-  updateGoogleConsent("denied");
-
-  // Ta bort befintliga Google Analytics-cookies när samtycke återkallas
-  document.cookie.split(";").forEach((cookie) => {
-    const cookieName = cookie.split("=")[0].trim();
-
-    if (cookieName === "_ga" || cookieName.startsWith("_ga_")) {
-      document.cookie = `${cookieName}=; Max-Age=0; path=/`;
-    }
-  });
-
-  window.dispatchEvent(
-    new CustomEvent("cookie-consent-changed", {
-      detail: { consent: "denied" },
-    })
-  );
-
-  window.location.reload();
-};
 
   if (!showBanner) return null;
 
@@ -82,14 +30,14 @@ const rejectAnalytics = () => {
 
         <div className="flex flex-wrap gap-3">
           <button
-            onClick={acceptAnalytics}
+            onClick={() => chooseConsent("granted")}
             className="rounded-md border border-gray-500 px-4 py-2 text-gray-800"
           >
             Godkänn statistik
           </button>
 
           <button
-            onClick={rejectAnalytics}
+            onClick={() => chooseConsent("denied")}
             className="rounded-md border border-gray-500 px-4 py-2 text-gray-800"
           >
             Neka
