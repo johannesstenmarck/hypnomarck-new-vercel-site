@@ -1,3 +1,4 @@
+import { faqItems } from "../faqItems.js";
 import { useEffect } from "react";
 import { consent, useCookieConsent } from "../useCookieConsent.js";
 import { useOutletContext } from "react-router-dom";
@@ -52,6 +53,7 @@ export default function HomePage() {
             <br />
             under ytan
           </h1>
+          <p className="text-lg md:text-xl text-white drop-shadow-lg mb-8">Hypnoterapi och förändringscoaching online med Johannes Stenmarck.</p>
           <div className="hidden sm:flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               type="button"
@@ -149,6 +151,7 @@ export default function HomePage() {
 
             <div className="bg-stone-900/60 backdrop-blur-md rounded-lg aspect-video max-w-3xl mx-auto mb-8 border border-emerald-700/30 overflow-hidden">
               <iframe
+                loading="lazy"
                 width="100%"
                 height="100%"
                 src="https://www.youtube-nocookie.com/embed/FYSi_FQKrp8"
@@ -176,7 +179,7 @@ export default function HomePage() {
           <div className="bg-emerald-950/60 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-emerald-700/30">
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className="order-1 md:order-1">
-                <img src="/profile.jpg" alt="Hypnoterapeut" className="w-full rounded-lg border-2 border-emerald-700/40 shadow-xl" />
+                <img src="/profile.jpg" alt="Johannes Stenmarck, certifierad hypnoterapeut och förändringscoach" loading="lazy" decoding="async" className="w-full rounded-lg border-2 border-emerald-700/40 shadow-xl" />
               </div>
 
               <div className="order-2 md:order-2">
@@ -266,7 +269,7 @@ export default function HomePage() {
               {
                 myth: '"Det fungerar bara på lättpåverkade människor"',
                 reality:
-                  "Olika människor har olika lätt att nå ett hypnotiskt tillstånd men för alla som vill och är öppna för förändring är hypnos ett kraftfullt verktyg att uppnå påtagliga, beständiga resultat."
+                  "Olika människor har olika lätt att nå ett hypnotiskt tillstånd men upplevelser och resultat varierar. Vilja och öppenhet innebär inte att ett visst resultat kan garanteras."
               }
             ].map((item, index) => (
               <div key={index} className="bg-emerald-950/60 backdrop-blur-md p-6 rounded-lg border border-emerald-700/30">
@@ -462,56 +465,7 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-serif text-center text-white drop-shadow-lg mb-12 font-medium">Vanliga frågor</h2>
 
           <div className="space-y-4">
-            {[
-              {
-                q: "Kommer jag att förlora kontrollen?",
-                a: "Nej. Du är alltid medveten under hypnos och kan när som helst välja att avbryta. Hypnos är ett tillstånd av fokuserad uppmärksamhet – inte kontrollförlust."
-              },
-              {
-                q: "Kan alla hypnotiseras?",
-                a: "De flesta kan gå in i hypnos om de vill. Det kräver öppenhet och vilja att delta. Vissa går djupare än andra, men djup är inte nödvändigt för förändring."
-              },
-              {
-                q: "Måste jag kunna visualisera?",
-                a: "Nej. Det finns många vägar in i hypnos. Om du inte ser inre bilder kan vi arbeta med känslor, ljud, tankar eller kroppsupplevelser istället."
-              },
-              {
-                q: "Vad händer om jag somnar?",
-                a: "Det kan hända, särskilt om du är väldigt avslappnad. Det är okej – du vaknar när sessionen är slut, och vi justerar tekniken nästa gång."
-              },
-              {
-                q: "Hur många sessioner behöver jag?",
-                a: "Det varierar. Vissa upplever förändring efter en session, andra behöver flera. Vi utvärderar tillsammans efter varje tillfälle och justerar efter dina behov."
-              },
-              {
-                q: "Är hypnos vetenskapligt bevisat?",
-                a: "Ja. Hypnos är väldokumenterat inom forskningen och används inom hälso- och sjukvård för bland annat smärtlindring, ångest och sömnproblem."
-              },
-              {
-                q: "Vad är skillnaden mellan hypnos och meditation?",
-                a: "Meditation handlar ofta om att observera tankarna. Hypnos är mer riktat – vi arbetar aktivt med specifika mönster, känslor eller övertygelser."
-              },
-              {
-                q: "Vad händer efter en session?",
-                a: "Du kan känna dig avslappnad, trött, eller energisk. Effekterna utvecklas ofta över tid. Du får en ljudinspelning att lyssna på hemma för att fördjupa arbetet."
-              },
-              {
-                q: "Kan hypnos ersätta terapi eller medicin?",
-                a: "Nej. Hypnoterapi är ett komplement – inte en ersättning. Om du har psykiatriska diagnoser eller tar medicin ska du alltid ha kontakt med din läkare eller terapeut."
-              },
-              {
-                q: "Vad händer om jag mår dåligt under en session?",
-                a: "Vi kan när som helst pausa eller avbryta. Du har alltid kontrollen. Jag är utbildad i att skapa trygghet och hantera eventuella reaktioner."
-              },
-              {
-                q: "Hur vet jag om det är säkert för mig?",
-                a: "Under den fria konsultationen går vi igenom din bakgrund, eventuella diagnoser och mediciner. Om hypnos inte passar just dig kommer jag att säga det."
-              },
-              {
-                q: "Fungerar det online?",
-                a: "Ja, det fungerar lika bra online som på plats. Det viktiga är att du sitter ostörd och har en stabil uppkoppling."
-              }
-            ].map((faq, index) => (
+            {faqItems.map((faq, index) => (
               <details key={index} className="bg-emerald-950/60 backdrop-blur-md p-6 rounded-lg border border-emerald-700/30 group">
                 <summary className="cursor-pointer text-lg md:text-xl font-serif text-white drop-shadow-lg flex justify-between items-center font-medium">
                   {faq.q}
