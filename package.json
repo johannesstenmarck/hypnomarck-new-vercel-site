@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:seo": "node scripts/check-seo.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
