@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { consent, useCookieConsent } from "../useCookieConsent.js";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo.jsx";
@@ -7,62 +8,27 @@ import { getHomeJsonLd } from "../seo/homeJsonLd.js";
 
 export default function HomePage() {
   const { openBooking } = useOutletContext();
-  const [cookieConsent, setCookieConsent] = useState(() => {
-    return localStorage.getItem("cookieConsent");
-  });
+  const cookieConsent = useCookieConsent();
 
   useEffect(() => {
-    const handleConsentChange = (event) => {
-      setCookieConsent(
-        event.detail?.consent || localStorage.getItem("cookieConsent")
-      );
-    };
-
-    window.addEventListener(
-      "cookie-consent-changed",
-      handleConsentChange
-    );
-
-    return () => {
-      window.removeEventListener(
-        "cookie-consent-changed",
-        handleConsentChange
-      );
-    };
-  }, []);
-
-  useEffect(() => {
-    const widget = document.querySelector(".embedsocial-hashtag");
-    const existingScript = document.getElementById(
-      "EmbedSocialHashtagScript"
-    );
-
-    if (cookieConsent !== "granted") {
-      if (existingScript) {
-        existingScript.remove();
-      }
-
-      if (widget) {
-        widget.innerHTML = "";
-      }
-
-      return;
-    }
-
-    if (!widget) return;
-
-    if (existingScript) {
-      existingScript.remove();
-    }
+    // Recheck the store: consent can change between render and this effect.
+    if (cookieConsent !== "granted" || consent.getSnapshot() !== "granted") return;
+    if (!document.querySelector(".embedsocial-hashtag")) return;
 
     const script = document.createElement("script");
     script.id = "EmbedSocialHashtagScript";
     script.src = "https://embedsocial.com/cdn/ht.js";
     script.async = true;
-
-    document.head.appendChild(script);
+    let cancelled = false;
+    // StrictMode replays effects. Let its cleanup cancel the first insertion.
+    queueMicrotask(() => {
+      if (cancelled || consent.getSnapshot() !== "granted") return;
+      consent.markExternalContentStarted();
+      document.head.appendChild(script);
+    });
 
     return () => {
+      cancelled = true;
       script.remove();
     };
   }, [cookieConsent]);
