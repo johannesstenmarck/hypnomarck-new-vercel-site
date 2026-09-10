@@ -40,7 +40,7 @@ export default function SiteShell() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 relative">
       <div className="fixed inset-0 z-0">
-        <img src="/background.jpg" alt="Misty forest path" className="w-full h-full object-cover" />
+        <img src="/background.jpg" alt="" aria-hidden="true" fetchpriority="high" className="w-full h-full object-cover" />
       </div>
 
       <SiteNav
@@ -51,7 +51,7 @@ export default function SiteShell() {
         scrollToId={scrollToId}
       />
 
-      <Outlet context={{ openBooking: () => setShowBookingModal(true) }} />
+      <main><Outlet context={{ openBooking: () => setShowBookingModal(true) }} /></main>
 
       <SiteFooter />
 

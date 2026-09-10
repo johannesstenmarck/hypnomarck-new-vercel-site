@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+export { HelmetProvider } from "react-helmet-async";
 import { SITE_URL, SITE_NAME, absoluteUrl } from "../seo/siteConfig.js";
 
 /**
@@ -11,8 +12,7 @@ import { SITE_URL, SITE_NAME, absoluteUrl } from "../seo/siteConfig.js";
  * @param {object[]} [props.jsonLd] - objekt som stringifyas till JSON-LD
  */
 export default function Seo({ title, description, path, keywords, ogImagePath = "/profile.jpg", jsonLd }) {
-  const canonicalPath = path === "/" ? "" : path;
-  const canonicalUrl = `${SITE_URL}${canonicalPath === "" ? "" : canonicalPath}`;
+  const canonicalUrl = `${SITE_URL}${path}`;
   const ogImage = absoluteUrl(ogImagePath);
 
   return (
@@ -20,8 +20,7 @@ export default function Seo({ title, description, path, keywords, ogImagePath = 
       <html lang="sv" />
       <title>{title}</title>
       <meta name="description" content={description} />
-      {keywords ? <meta name="keywords" content={keywords} /> : null}
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
       <meta name="author" content="Johannes Stenmarck" />
       <link rel="canonical" href={canonicalUrl} />
 
@@ -43,7 +42,7 @@ export default function Seo({ title, description, path, keywords, ogImagePath = 
         <script
           key={index}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
         />
       ))}
     </Helmet>

@@ -83,7 +83,7 @@ export default function SiteFooter() {
           <div>
             <h4 className="text-white text-sm font-medium mb-4 drop-shadow-md">Kontakt</h4>
             <div className="space-y-2 text-sm text-white/80">
-              <p className="drop-shadow-md">Stockholm, Sverige</p>
+              <p className="drop-shadow-md">Online för privatpersoner · Företagsuppdrag på arbetsplatsen</p>
               <a href="mailto:info@hypnomarck.se" className="block hover:text-white transition drop-shadow-md">
                 info@hypnomarck.se
               </a>
