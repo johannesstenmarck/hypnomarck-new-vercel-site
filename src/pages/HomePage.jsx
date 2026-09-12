@@ -1,5 +1,6 @@
+import OnlineInformation from "../components/OnlineInformation.jsx";
 import { faqItems } from "../faqItems.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { consent, useCookieConsent } from "../useCookieConsent.js";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -10,6 +11,7 @@ import { getHomeJsonLd } from "../seo/homeJsonLd.js";
 export default function HomePage() {
   const { openBooking } = useOutletContext();
   const cookieConsent = useCookieConsent();
+  const [onlineInfoOpen, setOnlineInfoOpen] = useState(false);
 
   useEffect(() => {
     // Recheck the store: consent can change between render and this effect.
@@ -163,6 +165,7 @@ export default function HomePage() {
               />
             </div>
 
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <button
               type="button"
               onClick={() => openBooking()}
@@ -170,6 +173,19 @@ export default function HomePage() {
             >
               Boka en gratis konsultation
             </button>
+              <button
+                type="button"
+                aria-expanded={onlineInfoOpen}
+                aria-controls="online-information"
+                onClick={() => setOnlineInfoOpen(open => !open)}
+                className="px-8 py-3 bg-stone-900/60 backdrop-blur-md border-2 border-stone-600/60 text-white rounded-full hover:bg-stone-800/70 transition text-lg font-medium"
+              >
+                Vad innebär hypnos online?
+              </button>
+            </div>
+            <div id="online-information" hidden={!onlineInfoOpen} className="mt-8 text-left bg-emerald-950/60 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-emerald-700/30 text-white">
+              <OnlineInformation />
+            </div>
           </div>
         </div>
       </section>
