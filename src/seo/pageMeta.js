@@ -5,26 +5,27 @@
 export const PAGE_SEO = {
   home: {
     path: "/",
-    title: "Hypnoterapeut Stockholm | Johannes Stenmarck – Hypnomarck",
+    title: "Hypnoterapi online | Johannes Stenmarck – Hypnomarck",
     description:
-      "Certifierad hypnoterapeut och coach i Stockholm. Hypnoterapi för ångest, sömn, självkänsla, stress och förändring på djupet. Gratis konsultation online. Boka tid via Hypnomarck.",
+      "Hypnoterapi och förändringscoaching online med Johannes Stenmarck, certifierad i Hypnoterapi 2.0. Utforska självkänsla och inre mönster. Boka gratis konsultation.",
     keywords:
       "hypnoterapeut Stockholm, hypnos Stockholm, hypnoterapi, hypnos terapi, ångest hypnos, sömn hypnos, coach Stockholm, gratis hypnos, Johannes Stenmarck, Hypnomarck"
   },
   omHypnos: {
     path: "/om-hypnos",
-    title: "Vad är hypnos? | Vetenskap, historia och hypnoterapi | Hypnomarck",
+    title: "Vad är hypnos? Forskning och hypnoterapi online | Hypnomarck",
     description:
-      "Läs om vad hypnos är, vetenskaplig bakgrund, historia och hur hypnoterapi fungerar. Vanliga missförstånd, FAQ och gratis introduktion till hypnos hos Johannes Stenmarck.",
+      "Vad är hypnos och hur går hypnoterapi online till? Läs om forskningsläget, vanliga frågor, sessioner och Johannes Stenmarcks arbetssätt.",
     keywords:
       "vad är hypnos, hypnos vetenskap, hypnoterapi hur funkar det, hypnos historia, hypnos missförstånd, hypnos online, Hypnomarck"
   },
   omMig: {
     path: "/om-mig",
-    title: "Om mig | Johannes Stenmarck – Hypnoterapeut och coach | Hypnomarck",
+    title: "Johannes Stenmarck | Certifierad hypnoterapeut – Hypnomarck",
     description:
-      "Johannes Stenmarck – certifierad hypnoterapeut och coach. Läs om mitt arbetssätt, förhållningssätt till förändring och hur vi kan arbeta tillsammans.",
+      "Lär känna Johannes Stenmarck, certifierad i Hypnoterapi 2.0 av Dan och Sara Ahtola på Ahtola Vision. Privatpersoner online och företagsuppdrag på arbetsplatsen.",
     keywords:
       "Johannes Stenmarck hypnoterapeut, hypnoterapeut om mig, hypnos coach Stockholm, Hypnomarck"
   }
 };
+
