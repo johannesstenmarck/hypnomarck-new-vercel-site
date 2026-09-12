@@ -11,12 +11,12 @@ export function getHomeJsonLd() {
         url: SITE_URL,
         name: "Hypnomarck",
         description:
-          "Hypnoterapeut och coach i Stockholm. Hypnoterapi, coaching och gratis konsultation online.",
+          "Hypnoterapi, förändringscoaching och gratis konsultation online med Johannes Stenmarck.",
         inLanguage: "sv-SE",
         publisher: { "@id": `${SITE_URL}/#business` }
       },
       {
-        "@type": "ProfessionalService",
+        "@type": "Organization",
         "@id": `${SITE_URL}/#business`,
         name: "Hypnomarck",
         alternateName: "Johannes Stenmarck Hypnoterapeut och Coach",
@@ -24,17 +24,9 @@ export function getHomeJsonLd() {
         email: "info@hypnomarck.se",
         image: absoluteUrl("/profile.jpg"),
         description:
-          "Certifierad hypnoterapeut och coach. Hypnoterapi för ångest, sömn, självkänsla och stress – online och med fokus på hållbar förändring.",
-        areaServed: {
-          "@type": "City",
-          name: "Stockholm"
-        },
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Stockholm",
-          addressCountry: "SE"
-        },
-        priceRange: "$$"
+          "Hypnoterapi och förändringscoaching online för privatpersoner samt företagsuppdrag på arbetsplatsen.",
+        sameAs: ["https://www.instagram.com/hypnomarck/"],
+        founder: { "@id": `${SITE_URL}/#person` }
       },
       {
         "@type": "Person",
@@ -45,7 +37,31 @@ export function getHomeJsonLd() {
         image: absoluteUrl("/profile.jpg"),
         email: "info@hypnomarck.se",
         worksFor: { "@id": `${SITE_URL}/#business` },
-        sameAs: ["https://www.instagram.com/hypnomarck"]
+        sameAs: ["https://www.instagram.com/hypnomarck/"],
+        hasCredential: {
+          "@type": "EducationalOccupationalCredential",
+          name: "Hypnoterapi 2.0",
+          credentialCategory: "Certifiering",
+          recognizedBy: { "@type": "Organization", name: "Ahtola Vision" }
+        }
+      }
+    ]
+  };
+}
+
+export function getProfileJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      ...getHomeJsonLd()["@graph"],
+      {
+        "@type": "ProfilePage",
+        "@id": `${SITE_URL}/om-mig#webpage`,
+        url: `${SITE_URL}/om-mig`,
+        name: "Johannes Stenmarck – hypnoterapeut och förändringscoach",
+        inLanguage: "sv-SE",
+        mainEntity: { "@id": `${SITE_URL}/#person` },
+        isPartOf: { "@id": `${SITE_URL}/#website` }
       }
     ]
   };
@@ -63,3 +79,4 @@ export function getBreadcrumbJsonLd(items) {
     }))
   };
 }
+
