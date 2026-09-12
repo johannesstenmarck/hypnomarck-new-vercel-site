@@ -49,6 +49,9 @@ export default function SiteFooter() {
               <Link to="/" className="block hover:text-white transition drop-shadow-md">
                 Hem
               </Link>
+              <Link to="/hypnoterapi-online" className="block hover:text-white transition drop-shadow-md">
+                Hypnoterapi online
+              </Link>
               <button type="button" onClick={goHowItWorks} className="block hover:text-white transition drop-shadow-md text-left">
                 Hur det fungerar
               </button>

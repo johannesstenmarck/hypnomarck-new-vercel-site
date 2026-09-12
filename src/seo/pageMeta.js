@@ -3,6 +3,11 @@
  * Nyckelorden är vägledande; skriv naturligt i beskrivningarna.
  */
 export const PAGE_SEO = {
+  online: {
+    path: "/hypnoterapi-online",
+    title: "Hypnoterapi online – upplägg och konsultation | Hypnomarck",
+    description: "Så går hypnoterapi online med Johannes Stenmarck till. Läs om videosamtal, sessioner och förberedelser. Börja med en gratis konsultation på cirka 30 minuter.",
+  },
   home: {
     path: "/",
     title: "Hypnoterapi online | Johannes Stenmarck – Hypnomarck",
@@ -28,4 +33,3 @@ export const PAGE_SEO = {
       "Johannes Stenmarck hypnoterapeut, hypnoterapeut om mig, hypnos coach Stockholm, Hypnomarck"
   }
 };
-

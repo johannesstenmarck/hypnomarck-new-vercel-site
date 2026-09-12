@@ -3,12 +3,17 @@ import { useLocation, Outlet } from "react-router-dom";
 import SiteNav from "./SiteNav.jsx";
 import SiteFooter from "./SiteFooter.jsx";
 import BookingModal from "./BookingModal.jsx";
+import { trackBookingEvent } from "../analytics.js";
 
 export default function SiteShell() {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
   const location = useLocation();
+  const openBooking = () => {
+    setShowBookingModal(true);
+    trackBookingEvent("booking_start");
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,11 +52,11 @@ export default function SiteShell() {
         showHeader={showHeader}
         showMobileMenu={showMobileMenu}
         setShowMobileMenu={setShowMobileMenu}
-        onOpenBooking={() => setShowBookingModal(true)}
+        onOpenBooking={openBooking}
         scrollToId={scrollToId}
       />
 
-      <main><Outlet context={{ openBooking: () => setShowBookingModal(true) }} /></main>
+      <main><Outlet context={{ openBooking }} /></main>
 
       <SiteFooter />
 

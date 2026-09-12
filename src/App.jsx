@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage.jsx";
 import OmHypnosPage from "./pages/OmHypnosPage.jsx";
 import OmMigPage from "./pages/OmMigPage.jsx";
 import CookieConsent from "./components/CookieConsent.jsx";
+import OnlinePage from "./pages/OnlinePage.jsx";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="om-hypnos" element={<OmHypnosPage />} />
           <Route path="om-mig" element={<OmMigPage />} />
+          <Route path="hypnoterapi-online" element={<OnlinePage />} />
         </Route>
       </Routes>
 
