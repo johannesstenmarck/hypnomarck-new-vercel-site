@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { trackBookingEvent } from "../analytics.js";
 
 const EXPERIENCE_LABELS = {
   "": "",
@@ -73,6 +74,8 @@ export default function BookingModal({ open, onClose }) {
         throw new Error(json.error || "Serverfel");
       }
       setPhase("thanks");
+      // Count a received request, not a click or a failed submission.
+      trackBookingEvent("generate_lead");
     } catch (err) {
       setError(err.message || "Något gick fel. Försök igen eller maila info@hypnomarck.se.");
     } finally {
