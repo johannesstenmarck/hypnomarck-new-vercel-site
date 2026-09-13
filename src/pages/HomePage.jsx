@@ -55,7 +55,6 @@ export default function HomePage() {
             <br />
             under ytan
           </h1>
-          <p className="text-lg md:text-xl text-white drop-shadow-lg mb-8">Hypnoterapi och förändringscoaching online med Johannes Stenmarck.</p>
           <div className="hidden sm:flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               type="button"
