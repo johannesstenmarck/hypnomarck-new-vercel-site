@@ -10,7 +10,7 @@ export default function OnlineInformation({ children }) {
             <ol className="list-decimal pl-6 space-y-3">
               <li><strong>Skicka en förfrågan.</strong> Använd bokningsformuläret så återkommer jag för att hitta en tid. En förfrågan är inte en bekräftad bokning.</li>
               <li><strong>Vi ses för en gratis konsultation.</strong> Samtalet tar cirka 30 minuter. Du får berätta om dina mål och ställa frågor om upplägget.</li>
-              <li><strong>Vi kommer överens om nästa steg.</strong> Om du vill gå vidare planerar vi fortsättningen tillsammans. En enskild session tar 60–90 minuter.</li>
+              <li><strong>Vi kommer överens om nästa steg.</strong> Om du vill gå vidare planerar vi fortsättningen tillsammans. En enskild session tar 75–90 minuter.</li>
             </ol>
           </section>
           <section className="mt-10 space-y-4 leading-relaxed text-lg">
