@@ -414,7 +414,7 @@ export default function HomePage() {
 
             <div className="bg-emerald-950/60 backdrop-blur-md p-8 rounded-lg border border-emerald-700/30">
               <h3 className="text-2xl md:text-3xl font-serif mb-2 text-white drop-shadow-lg font-medium">Enskild session</h3>
-              <div className="text-4xl md:text-5xl font-serif mb-4 text-white drop-shadow-lg">2 500 kr</div>
+              <div className="text-4xl md:text-5xl font-serif mb-4 text-white drop-shadow-lg">3 000 kr</div>
               <p className="text-white/90 mb-6 leading-relaxed drop-shadow-md text-lg md:text-xl">60-90 minuter fokuserad mental träning mot ett specifikt mål.</p>
               <ul className="space-y-3 mb-6 text-white/90 text-lg md:text-xl">
                 <li className="flex items-start">
