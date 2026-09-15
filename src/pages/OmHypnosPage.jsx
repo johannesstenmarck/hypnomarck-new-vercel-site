@@ -86,7 +86,7 @@ export default function OmHypnosPage() {
           </section>
           <section className="space-y-4 text-white leading-relaxed text-lg md:text-xl">
             <h2 className="text-2xl md:text-3xl font-serif">Hypnoterapi online – så går det till</h2>
-            <p>Jag tar emot privatpersoner online. Första steget är en kostnadsfri konsultation på 30 minuter. Vi pratar om vad du vill ha hjälp med och om mitt arbetssätt passar. En enskild session är 60–90 minuter.</p>
+            <p>Jag tar emot privatpersoner online. Första steget är en kostnadsfri konsultation på 30 minuter. Vi pratar om vad du vill ha hjälp med och om mitt arbetssätt passar. En enskild session är 75–90 minuter.</p>
             <p>Du behöver en ostörd plats och en stabil internetuppkoppling. För företag kan jag även komma till arbetsplatsen.</p>
             <p><a href="/om-mig" className="underline">Läs om Johannes Stenmarck och certifieringen i Hypnoterapi 2.0</a> eller <a href="/#pricing" className="underline">se sessioner och priser</a>.</p>
           </section>
