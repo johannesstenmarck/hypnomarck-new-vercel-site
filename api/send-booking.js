@@ -74,7 +74,7 @@ Samtycke (integritetspolicy): ${consent ? "Ja" : "Nej"}
 
   const htmlVisitor = `
 <p>Tack för din bokningsförfrågan!</p>
-<p>Vi har tagit emot din förfrågan och återkommer inom 24 timmar.</p>
+<p>Jag har tagit emot din förfrågan och återkommer inom 24 timmar.</p>
 <p style="margin-top:16px">Med vänlig hälsning,<br/>Johannes Stenmarck<br/>Hypnomarck</p>
 <hr style="margin:24px 0;border:none;border-top:1px solid #e7e5e4"/>
 <p style="font-size:14px;color:#57534e"><strong>Din förfrågan:</strong></p>
@@ -97,7 +97,7 @@ Samtycke (integritetspolicy): ${consent ? "Ja" : "Nej"}
         from,
         to: email,
         subject: "Tack för din bokningsförfrågan",
-        text: `Hej ${name}!\n\nTack för din bokningsförfrågan. Vi återkommer inom 24 timmar.\n\n---\n${textBlock}\n\nMed vänlig hälsning,\nJohannes Stenmarck – Hypnomarck`,
+        text: `Tack för din bokningsförfrågan!\n\nJag har tagit emot din förfrågan och återkommer inom 24 timmar.\n\nMed vänlig hälsning,\nJohannes Stenmarck\nHypnomarck\n\n---\nDin förfrågan:\n${textBlock}`,
         html: htmlVisitor
       })
     ]);
