@@ -31,5 +31,13 @@ export const PAGE_SEO = {
       "Lär känna Johannes Stenmarck, certifierad i Hypnoterapi 2.0 av Dan och Sara Ahtola på Ahtola Vision. Privatpersoner online och företagsuppdrag på arbetsplatsen.",
     keywords:
       "Johannes Stenmarck hypnoterapeut, hypnoterapeut om mig, hypnos coach Stockholm, Hypnomarck"
+  },
+  prokrastineringFreeze: {
+    path: "/prokrastinering-sjalvtvivel-freeze",
+    title: "Prokrastinering, självtvivel och freeze | Hypnomarck",
+    description:
+      "Hypnos och coaching online för dig som vet vad du vill göra men fastnar i självtvivel, prokrastinering eller freeze. Boka en kostnadsfri konsultation.",
+    keywords:
+      "prokrastinering hypnos, självtvivel hypnos, freeze coaching, freeze respons, förändringscoaching online, hypnoterapi online, Hypnomarck"
   }
 };
