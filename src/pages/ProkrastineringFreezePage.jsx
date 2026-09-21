@@ -35,13 +35,13 @@ export default function ProkrastineringFreezePage() {
                 Prokrastinering · Självtvivel · Freeze
               </p>
               <h2 className="text-3xl md:text-5xl font-serif text-white drop-shadow-lg font-medium leading-tight">
-                När du vet vad du vill — men något inom dig håller tillbaka
+                När du vet vad du vill — men något inom dig håller dig tillbaka
               </h2>
             </header>
 
             <div className="max-w-3xl mx-auto space-y-6 text-white leading-relaxed text-lg md:text-xl">
               <p className="font-semibold text-xl md:text-2xl">
-                Jag hjälper människor som vet vad de vill göra, men ändå märker att något inom dem håller tillbaka.
+                Jag hjälper människor som vet vad de vill göra, men ändå märker att något inom dem håller dem tillbaka.
               </p>
 
               <p>
