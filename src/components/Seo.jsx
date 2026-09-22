@@ -20,7 +20,7 @@ export default function Seo({ title, description, path, keywords, ogImagePath = 
       <html lang="sv" />
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta name="robots" content="noindex, nofollow" />
       <meta name="author" content="Johannes Stenmarck" />
       <link rel="canonical" href={canonicalUrl} />
 
