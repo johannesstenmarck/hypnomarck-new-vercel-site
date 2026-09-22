@@ -5,6 +5,7 @@ import OmHypnosPage from "./pages/OmHypnosPage.jsx";
 import OmMigPage from "./pages/OmMigPage.jsx";
 import CookieConsent from "./components/CookieConsent.jsx";
 import OnlinePage from "./pages/OnlinePage.jsx";
+import ProkrastineringFreezePage from "./pages/ProkrastineringFreezePage.jsx";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="om-hypnos" element={<OmHypnosPage />} />
           <Route path="om-mig" element={<OmMigPage />} />
           <Route path="hypnoterapi-online" element={<OnlinePage />} />
+          <Route path="prokrastinering-sjalvtvivel-freeze" element={<ProkrastineringFreezePage />} />
         </Route>
       </Routes>
 
