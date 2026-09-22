@@ -3,6 +3,7 @@
  * Nyckelorden är vägledande; skriv naturligt i beskrivningarna.
  */
 export const PAGE_SEO = {
+  previewPrivacy: { path: '/integritet-forhandsversion', title: 'Uppgifter i förhandsversionen | Hypnomarck', description: 'Information om testformuläret.' },
   scenskrack: {
     path: "/scenskrack",
     title: "Scenskräck – våga uttrycka dig och ta plats | Hypnomarck",
