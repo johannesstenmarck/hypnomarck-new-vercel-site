@@ -9,12 +9,15 @@ import ProkrastineringFreezePage from "./pages/ProkrastineringFreezePage.jsx";
 
 import EmetofobiPage from "./pages/EmetofobiPage.jsx";
 
+import ScenskrackPage from "./pages/ScenskrackPage.jsx";
+
 export default function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<SiteShell />}>
           <Route path="emetofobi" element={<EmetofobiPage />} />
+          <Route path="scenskrack" element={<ScenskrackPage />} />
           <Route index element={<HomePage />} />
           <Route path="om-hypnos" element={<OmHypnosPage />} />
           <Route path="om-mig" element={<OmMigPage />} />

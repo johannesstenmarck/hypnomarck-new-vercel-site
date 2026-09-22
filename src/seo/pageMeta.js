@@ -3,6 +3,11 @@
  * Nyckelorden är vägledande; skriv naturligt i beskrivningarna.
  */
 export const PAGE_SEO = {
+  scenskrack: {
+    path: "/scenskrack",
+    title: "Scenskräck – våga uttrycka dig och ta plats | Hypnomarck",
+    description: "När scenskräck håller dig tillbaka. Utforska hypnos och coaching online med Johannes Stenmarck och boka en kostnadsfri konsultation."
+  },
   emetofobi: {
     path: "/emetofobi",
     title: "Emetofobi – när rädslan för att kräkas begränsar livet | Hypnomarck",
