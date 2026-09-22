@@ -25,7 +25,7 @@ export default function AboutContent({ openBooking, headingLevel = "h1" }) {
                 </p>
                 <p>Jag tror på förändring som sker inifrån – genom kontakt med det undermedvetna, där dina verkliga resurser finns.</p>
                 <h2 className="text-2xl font-serif pt-4">Utbildning och certifiering</h2>
-                <p>Jag är certifierad inom Hypnoterapi 2.0 av Dan och Sara Ahtola på Ahtola Vision.</p>
+                <p>Jag är certifierad inom Trancemorf Hypnoterapi av Dan och Sara Ahtola på Ahtola Vision.</p>
                 <h2 className="text-2xl font-serif pt-4">Så träffas vi</h2>
                 <p>Jag tar emot privatpersoner online. För företag kan jag även komma till arbetsplatsen. Vi börjar med en gratis konsultation där vi pratar om era mål och om mitt arbetssätt passar.</p>
                 <p>På Instagram delar jag tankar om självkänsla, relationer och inre mönster: <a href="https://www.instagram.com/hypnomarck/" className="underline" rel="me noopener noreferrer" target="_blank">@hypnomarck</a>.</p>
