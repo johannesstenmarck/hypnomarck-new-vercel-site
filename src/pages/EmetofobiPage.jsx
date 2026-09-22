@@ -41,7 +41,6 @@ export default function EmetofobiPage() {
 
             <div className="max-w-3xl mx-auto space-y-6 text-white leading-relaxed text-lg md:text-xl">
               <p className="font-semibold text-xl md:text-2xl">Jag hjälper människor som vill känna sig friare i vardagen, men märker att rädslan för att kräkas håller dem tillbaka.</p>
-              <p>”Är det säkert att äta på restaurang nu under vintern?”</p>
               <p>”Tänk om någon på festen har varit magsjuk?”</p>
               <p>”Vågar jag boka resan – vad händer om jag mår illa på vägen?”</p>
               <p>”Tänk om det går magsjuka på förskolan igen – tänk om vi blir smittade?”</p>
