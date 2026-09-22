@@ -35,7 +35,7 @@ export default function ScenskrackPage() {
                 Scenskräck
               </p>
               <h2 className="text-3xl md:text-5xl font-serif text-white drop-shadow-lg font-medium leading-tight">
-                När du vill ta plats – men allt låser sig när blickarna riktas mot dig
+                Du vill ta plats – men allt låser sig när blickarna riktas mot dig
               </h2>
             </header>
 
