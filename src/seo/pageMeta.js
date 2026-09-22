@@ -3,6 +3,11 @@
  * Nyckelorden är vägledande; skriv naturligt i beskrivningarna.
  */
 export const PAGE_SEO = {
+  emetofobi: {
+    path: "/emetofobi",
+    title: "Emetofobi – när rädslan för att kräkas begränsar livet | Hypnomarck",
+    description: "Utforska hur rädslan för att kräkas påverkar din vardag. Läs om hypnos och coaching online med Johannes Stenmarck och boka en kostnadsfri konsultation."
+  },
   online: {
     path: "/hypnoterapi-online",
     title: "Hypnoterapi online – upplägg och konsultation | Hypnomarck",

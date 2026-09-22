@@ -7,11 +7,14 @@ import CookieConsent from "./components/CookieConsent.jsx";
 import OnlinePage from "./pages/OnlinePage.jsx";
 import ProkrastineringFreezePage from "./pages/ProkrastineringFreezePage.jsx";
 
+import EmetofobiPage from "./pages/EmetofobiPage.jsx";
+
 export default function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<SiteShell />}>
+          <Route path="emetofobi" element={<EmetofobiPage />} />
           <Route index element={<HomePage />} />
           <Route path="om-hypnos" element={<OmHypnosPage />} />
           <Route path="om-mig" element={<OmMigPage />} />
