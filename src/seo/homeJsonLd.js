@@ -40,7 +40,7 @@ export function getHomeJsonLd() {
         sameAs: ["https://www.instagram.com/hypnomarck/"],
         hasCredential: {
           "@type": "EducationalOccupationalCredential",
-          name: "Hypnoterapi 2.0",
+          name: "Trancemorf Hypnoterapi",
           credentialCategory: "Certifiering",
           recognizedBy: { "@type": "Organization", name: "Ahtola Vision" }
         }

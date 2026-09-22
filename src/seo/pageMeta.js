@@ -22,7 +22,7 @@ export const PAGE_SEO = {
     path: "/",
     title: "Hypnoterapi online | Johannes Stenmarck – Hypnomarck",
     description:
-      "Hypnoterapi och förändringscoaching online med Johannes Stenmarck, certifierad i Hypnoterapi 2.0. Utforska självkänsla och inre mönster. Boka gratis konsultation.",
+      "Hypnoterapi och förändringscoaching online med Johannes Stenmarck, certifierad i Trancemorf Hypnoterapi. Utforska självkänsla och inre mönster. Boka gratis konsultation.",
     keywords:
       "hypnoterapeut Stockholm, hypnos Stockholm, hypnoterapi, hypnos terapi, ångest hypnos, sömn hypnos, coach Stockholm, gratis hypnos, Johannes Stenmarck, Hypnomarck"
   },
@@ -38,7 +38,7 @@ export const PAGE_SEO = {
     path: "/om-mig",
     title: "Johannes Stenmarck | Certifierad hypnoterapeut – Hypnomarck",
     description:
-      "Lär känna Johannes Stenmarck, certifierad i Hypnoterapi 2.0 av Dan och Sara Ahtola på Ahtola Vision. Privatpersoner online och företagsuppdrag på arbetsplatsen.",
+      "Lär känna Johannes Stenmarck, certifierad i Trancemorf Hypnoterapi av Dan och Sara Ahtola på Ahtola Vision. Privatpersoner online och företagsuppdrag på arbetsplatsen.",
     keywords:
       "Johannes Stenmarck hypnoterapeut, hypnoterapeut om mig, hypnos coach Stockholm, Hypnomarck"
   },

@@ -19,7 +19,7 @@ export default function OnlineInformation({ children }) {
             <h2 className="text-2xl font-serif pt-4">Vad kostar det?</h2>
             <p>Den första konsultationen är gratis. Aktuella alternativ finns på startsidan under <a href="/#pricing" className="underline">sessioner och priser</a>. Vi går igenom vilket upplägg som är aktuellt innan du bestämmer dig.</p>
             <h2 className="text-2xl font-serif pt-4">Vem möter jag?</h2>
-            <p>Jag heter Johannes Stenmarck och är certifierad inom Hypnoterapi 2.0 av Dan och Sara Ahtola på Ahtola Vision. <Link to="/om-mig" className="underline">Läs om min bakgrund och mitt arbetssätt</Link>.</p>
+            <p>Jag heter Johannes Stenmarck och är certifierad inom Trancemorf Hypnoterapi av Dan och Sara Ahtola på Ahtola Vision. <Link to="/om-mig" className="underline">Läs om min bakgrund och mitt arbetssätt</Link>.</p>
             <h2 className="text-2xl font-serif pt-4">Vill du förstå hypnos innan du bokar?</h2>
             <p>På sidan <Link to="/om-hypnos" className="underline">Vad är hypnos?</Link> hittar du vanliga frågor och information om forskningsläget. Hypnoterapi ersätter inte medicinsk eller psykiatrisk vård.</p>
             <h2 className="text-2xl font-serif pt-4">Tar du även emot på plats?</h2>
