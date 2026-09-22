@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo.jsx';
 import BookingModal from '../components/BookingModal.jsx';
 import '../preview.css';
+import '../atmosphere.css';
 
 const questions = [
  ['Behöver jag veta vad jag vill arbeta med?', 'Nej. Vi börjar med ett samtal om vad du vill förändra i din vardag och vad du hoppas få ut av ett samarbete. Du behöver inte ha ett färdigt svar.'],
@@ -18,9 +19,9 @@ export default function HomePreview() {
  return <div className="hp">
   <Seo title="Coaching och mental träning online | Hypnomarck" description="Ta mer plats, stärk din självtillit och hitta vägen till handling. Coaching och mental träning online med Johannes Stenmarck." path="/" />
   <a className="hp-skip" href="#innehall">Hoppa till innehållet</a>
-  <div className="hp-preview">Förhandsversion <span>•</span> Prova formuläret – inga uppgifter skickas.</div>
+
   <header className="hp-header">
-   <a href="#" className="hp-brand" aria-label="Hypnomarck, startsida">hypnomarck<span>JOHANNES STENMARCK</span></a>
+   <a href="#" className="hp-brand hp-lockup" aria-label="Hypnomarck – Förändring börjar under ytan. Startsida"><img src="/android-chrome-512x512.png" alt="" width="70" height="70"/><span className="hp-brand-text"><span className="hp-wordmark">hypnomarck</span><span className="hp-tagline">Förändring börjar under ytan.</span></span></a>
    <nav className="hp-nav" aria-label="Huvudmeny"><a href="#for-dig">För dig</a><a href="#sa-gar-det-till">Så går det till</a><a href="#om-johannes">Om Johannes</a><a href="#sessioner">Sessioner</a></nav>
    <button className="hp-button hp-small hp-header-cta" onClick={open}>Boka gratis konsultation <span aria-hidden="true">↗</span></button>
    <button className="hp-menu" aria-expanded={menu} aria-controls="hp-mobile-menu" onClick={()=>setMenu(!menu)}>{menu ? 'Stäng meny' : 'Meny'}</button>
@@ -29,7 +30,7 @@ export default function HomePreview() {
   <main id="innehall">
    <section className="hp-hero">
     <div className="hp-hero-copy"><p className="hp-eyebrow">COACHING & MENTAL TRÄNING ONLINE</p><h1>Från självtvivel<br/>till mer <em>handlingsutrymme.</em></h1><p className="hp-lead">Du vet vad du vill. Ändå kan steget dit kännas långt.</p><p>Jag hjälper dig att utforska det som håller dig tillbaka och arbeta mot det du vill göra mer plats för i livet.</p><div className="hp-actions"><button className="hp-button" onClick={open}>Boka gratis konsultation <span aria-hidden="true">↗</span></button><a className="hp-text-link" href="#sa-gar-det-till">Så går det till <span aria-hidden="true">↓</span></a></div><p className="hp-note">30 minuter · Online · Kostnadsfritt första samtal</p></div>
-    <div className="hp-hero-image"><img src="/background.jpg" alt="En stilla stig genom en grön skog" fetchpriority="high"/><div className="hp-image-caption">Förändring börjar under ytan.</div></div>
+    <div className="hp-hero-image"><img src="/background.jpg" alt="En stilla stig genom en grön skog" fetchpriority="high"/></div><a className="hp-explore" href="#for-dig">Utforska i din egen takt <span aria-hidden="true">↓</span></a>
    </section>
    <div className="hp-intro"><img src="/profile.jpg" alt="Johannes Stenmarck"/><div><p>Johannes Stenmarck</p><span>Certifierad hypnoterapeut och coach</span></div><a href="#om-johannes">Lär känna mig ↗</a></div>
    <section className="hp-section" id="for-dig"><div className="hp-section-heading"><p className="hp-eyebrow">KÄNNER DU IGEN DIG?</p><h2>När du vill framåt,<br/>men håller dig tillbaka.</h2><p>Vi utgår från din vardag och det du vill kunna göra annorlunda.</p></div><div className="hp-three">
@@ -47,7 +48,8 @@ export default function HomePreview() {
    <section className="hp-faq hp-section" id="fragor"><div><p className="hp-eyebrow">INFÖR VÅRT FÖRSTA SAMTAL</p><h2>Det är okej<br/>att ha frågor.</h2><Link className="hp-text-link" to="/om-hypnos">Läs mer om hypnos ↗</Link></div><div>{questions.map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
    <section className="hp-final"><p className="hp-eyebrow">DITT NÄSTA STEG</p><h2>Vad vill du göra<br/>mer plats för?</h2><p>Vi börjar med ett kostnadsfritt samtal om dig och dina mål.</p><button className="hp-button hp-light" onClick={open}>Boka gratis konsultation ↗</button><span>30 minuter online. Du väljer sedan hur du vill gå vidare.</span></section>
   </main>
-  <footer className="hp-footer"><div><a className="hp-brand" href="#">hypnomarck</a><p>Förändring börjar under ytan.</p></div><div><a href="mailto:info@hypnomarck.se">info@hypnomarck.se</a><a href="https://www.instagram.com/hypnomarck/" target="_blank" rel="noreferrer">Instagram ↗</a><Link to="/integritet-forhandsversion">Om uppgifter i förhandsversionen</Link></div><small>© {new Date().getFullYear()} Johannes Stenmarck · Coaching och mental träning online</small></footer>
+  <footer className="hp-footer"><div><a href="#" className="hp-brand hp-lockup" aria-label="Hypnomarck – Förändring börjar under ytan. Startsida"><img src="/android-chrome-512x512.png" alt="" width="70" height="70"/><span className="hp-brand-text"><span className="hp-wordmark">hypnomarck</span><span className="hp-tagline">Förändring börjar under ytan.</span></span></a></div><div><a href="mailto:info@hypnomarck.se">info@hypnomarck.se</a><a href="https://www.instagram.com/hypnomarck/" target="_blank" rel="noreferrer">Instagram ↗</a><Link to="/integritet-forhandsversion">Om uppgifter i förhandsversionen</Link></div><small>© {new Date().getFullYear()} Johannes Stenmarck · Coaching och mental träning online</small></footer>
+  <div className="hp-preview">Förhandsversion · Prova formuläret – inga uppgifter skickas.</div>
   <BookingModal open={booking} onClose={()=>setBooking(false)} />
  </div>;
 }
