@@ -1,19 +1,25 @@
 # Startsida och konsultationsförfrågan – separat förhandsversion
 
-Bas: main 5598db539224b9bc16893fa4c378fa03b139286f, 22 september 2026.
+Senast reviderad 15 oktober 2026. Produktionsbas: main 5598db539224b9bc16893fa4c378fa03b139286f. Befintliga undersidor finns kvar och ingår inte i den redaktionella omarbetningen.
 
-Ny startsida med konkret målgrupp, presenterad avsändare, arbetssätt, befintliga priser och frågor. Skog och porträtt återanvänds. Befintliga undersidor finns kvar; de ingår inte i den redaktionella omarbetningen.
+Skogen fyller första skärmen och följer med runt gemensamma läsytor. Öppningen innehåller tjänstebeskrivning, konsultation, informationslänk och utforskningspil. Porträtt och personlig introduktion kommer direkt efter öppningen. Tre vardagsberättelser ersätter problemrutorna. Menyn får ett kompakt läge vid scrollning och scrollmål lämnar plats för den. Brödtext är normalviktad och längre texter vänsterställda.
 
-Formuläret kräver namn och e-post. Telefon och tidsönskemål är frivilliga. Inga frågor om hälsa eller tidigare terapi. Dialogen har Escape, fokusbegränsning och återställt fokus. Bekräftelsen skiljer mellan förfrågan och bokad tid.
+Arbetssättet beskrivs positivt genom processen och möjligheten till förändring. Texten är ett arbetsutkast att precisera med Johannes intervjusvar. Utbildning och yrkesroll framgår utan att tillskriva Johannes vårdlegitimation. Sofias redan publicerade omdöme återges ordagrant, som hennes erfarenhet. Andra citat har inte ändrats. Ingen universell resultatgaranti har lagts till.
+
+Introduktionsvideon är 20 minuter, ligger efter presentationen och laddas först när besökaren väljer att öppna den. Den inbäddade spelaren använder youtube-nocookie.com. Den första konsultationen är kostnadsfri. Två betalda upplägg med befintliga priser nås via en separat prisdialog, utan popularitetsmarkering eller bokningsknappar för paket.
+
+Förfrågan kräver namn och e-post. Telefon är förvalt kontaktalternativ och kräver då telefonnummer; Google Meet kan väljas utan telefonnummer. Tidsönskemål är frivilliga. Ingen fråga om hälsa eller terapihistorik finns i första steget. Dialogen har tillgänglig benämning, inert bakgrund, fokusbegränsning, Escape och återställt fokus. Bekräftelsen skiljer förfrågan från bokad tid. Ingen osäker svarstid utlovas.
 
 ## Endast för granskning – slå inte ihop med produktion
 
-Formuläret demonstrerar flödet lokalt. Det anropar inte boknings-API:t och skickar inga e-postmeddelanden. API:t returnerar 403 även vid direkt anrop. Statistik och sociala inbäddningar är avstängda via consent-bootstrap. Alla sidors robots-meta och Vercels svar anger noindex, nofollow. Förhandsversionen är inte åtkomstskyddad enbart genom noindex.
+Formuläret demonstrerar flödet lokalt utan nätverksöverföring, lagring eller e-post. API:t blockerar inskick. Statistik är avstängd och sidorna anger noindex, nofollow. Noindex är inte ett åtkomstskydd. YouTube aktiveras av besökarens val, Instagram finns som vanlig länk.
 
-Integritetssidan beskriver testformuläret; den är inte en färdig integritetspolicy för verksamheten. Före produktionslansering behöver verklig personuppgiftshantering dokumenteras och den nya formulärmodellen kopplas till ett uppdaterat och verifierat API. Återställ produktionssamtycke och mätning i en separat produktionsändring. Återinför inte de borttagna hälsofälten.
+Enligt Johannes instruktion färdigställs fullständig integritetspolicy och ansvarsinformation efter övriga innehålls- och designändringar. Den befintliga informationen gäller enbart testformuläret. Produktionskoppling, faktisk e-postleverans, samtycke och mätning hör till lanseringsarbetet. Ingen produktionspublicering görs i denna leverans.
 
-Den förenklade startsidan visar inga klientomdömen eller inbäddad video. Befintliga citat har inte ändrats. Ingen garanti om resultat, svarstid eller vårdbehörighet har lagts till.
+Intervjuformuläret och textunderlaget levereras separat i uppgiftens outputs och är inte offentliga webbplatsfiler. Intervjun behöver precisera personlig bakgrund, certifiering, innehåll i inspelningar och uppföljning, hållbar svarstid samt tillstånd för citat.
 
 ## Verifiering
 
-Bygg med npm run build. Kör en separat lokal preview på port 4185 och npx playwright test --config preview-tests.config.js. De sex testerna täcker formulärvalidering, testbekräftelse utan nätverksöverföring, återställning, fokus, Escape, integritetslänk och bredderna 320, 390, 768 och 1440 px. Produktionsspecifika samtyckes- och analyskrav gäller inte denna avsiktligt isolerade demo.
+Ordinarie bygge: npm run build. Lokal granskning: npx playwright test --config preview-tests.config.js. Nio tester täcker förfrågan utan överföring, validering, telefon/Google Meet, fokus/Escape, testinformation, mobilmeny, scrollmål, frivillig videoladdning och 320/390/768/1440 px.
+
+På Windows användes lokalt klient- och serverbygge med preserveSymlinks, förgenerering av 8 sidor från serverbygget samt statiska testfiler direkt i webbläsaren på grund av miljöns begränsning av nätverk och sökvägsupplösning. Fyra kontrollerade text/färg-par hade kontrast 4,69:1–10,43:1 på sina läsytor; detta är inte en fullständig WCAG-revision.
