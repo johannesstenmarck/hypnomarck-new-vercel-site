@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo.jsx';
 import BookingModal from '../components/BookingModal.jsx';
@@ -6,50 +6,95 @@ import '../preview.css';
 import '../atmosphere.css';
 
 const questions = [
- ['Behöver jag veta vad jag vill arbeta med?', 'Nej. Vi börjar med ett samtal om vad du vill förändra i din vardag och vad du hoppas få ut av ett samarbete. Du behöver inte ha ett färdigt svar.'],
+ ['Behöver jag veta vad jag vill arbeta med?', 'Nej. Du får gärna komma med en tanke, en fråga eller något du ännu inte riktigt kan sätta ord på. Vi börjar där.'],
  ['Hur går ett möte online till?', 'Vi ses via videosamtal. Välj en lugn plats där du kan vara ostörd och använd en stabil internetanslutning. Du får praktisk information när vi har bestämt en tid.'],
- ['Vad innebär hypnos i ditt arbetssätt?', 'Hypnos används som en metod för fokuserad uppmärksamhet och guidade övningar. Vi pratar om upplägget innan vi börjar. Upplevelser och resultat varierar, och du kan be om en paus eller avsluta.'],
- ['Hur många sessioner behöver jag?', 'Det beror på dina mål och förutsättningar. Vi pratar om ett rimligt upplägg under konsultationen och följer upp längs vägen. Ett visst resultat eller antal sessioner kan inte garanteras.'],
- ['Är detta hälso- och sjukvård?', 'Nej. Jag är certifierad hypnoterapeut och coach, inte legitimerad vårdpersonal. Erbjudandet gäller coaching, mental träning och personlig utveckling. Det ersätter inte medicinsk eller psykologisk bedömning och behandling.']
+ ['Vad innebär hypnos i ditt arbetssätt?', 'Hypnos används som en metod för fokuserad uppmärksamhet och guidade övningar. Jag berättar om upplägget innan vi börjar. Upplevelser och resultat varierar, och du kan be om en paus eller avsluta.'],
+ ['Måste jag bestämma mig efter första samtalet?', 'Nej. Konsultationen är till för att vi ska få träffas och för att du ska kunna ställa frågor. Efteråt får du känna efter om du vill gå vidare.'],
+ ['Är detta hälso- och sjukvård?', 'Jag är certifierad hypnoterapeut och coach, utan vårdlegitimation. Mitt erbjudande gäller coaching, mental träning och personlig utveckling. Det ersätter inte medicinsk eller psykologisk bedömning och behandling.']
 ];
+const navigation = [['För dig', 'for-dig'], ['Om Johannes', 'om-johannes'], ['Så går det till', 'sa-gar-det-till'], ['Frågor & priser', 'fragor']];
+
+function Wordmark() {
+ return <a href="#" className="hp-brand hp-lockup" aria-label="Hypnomarck, startsida"><span className="hp-brand-text"><span className="hp-wordmark">hypnomarck</span><span className="hp-tagline">Förändring börjar under ytan</span></span></a>;
+}
+
+function SessionPrices({ open, onClose }) {
+ const dialog = useRef(null);
+ useEffect(() => {
+  if (!open) return;
+  const previous = document.activeElement;
+  const overflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  dialog.current.showModal();
+  return () => { dialog.current?.close(); document.body.style.overflow = overflow; previous?.focus(); };
+ }, [open]);
+ return <dialog ref={dialog} className="hp-rates" aria-labelledby="rates-title" onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { const r = e.currentTarget.getBoundingClientRect(); if (e.target === e.currentTarget && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) onClose(); }}>
+  <div className="hb-heading"><div><p className="hp-eyebrow">PRAKTISK INFORMATION</p><h2 id="rates-title">Sessioner och priser</h2></div><button className="hb-close" onClick={onClose} aria-label="Stäng priser">×</button></div>
+  <p>Här kan du läsa om de olika uppläggen i lugn och ro. Vi pratar om vad som kan passa dig innan du bestämmer dig.</p>
+  <dl>
+   <div><dt>Gratis konsultation <span>0 kr</span></dt><dd>Cirka 30 minuter online. Vi pratar om vad du vill utforska och du får ställa dina frågor.</dd></div>
+   <div><dt>Enskild session <span>3 000 kr</span></dt><dd>75–90 minuter online. En individuell session, förinspelad mental träning och uppföljningssamtal.</dd></div>
+   <div><dt>Fyra sessioner <span>8 000 kr</span></dt><dd>Fyra individuella sessioner, fyra förinspelade sessioner och uppföljningssamtal.</dd></div>
+  </dl>
+  <p className="hp-rates-note">Ett visst resultat eller antal sessioner kan inte garanteras. Vi kommer överens om mål och upplägg tillsammans.</p>
+ </dialog>;
+}
+
 export default function HomePreview() {
  const [booking, setBooking] = useState(false);
+ const [prices, setPrices] = useState(false);
  const [menu, setMenu] = useState(false);
- const open = () => {setMenu(false); setBooking(true);};
+ const open = () => { setMenu(false); setBooking(true); };
  return <div className="hp">
-  <Seo title="Coaching och mental träning online | Hypnomarck" description="Ta mer plats, stärk din självtillit och hitta vägen till handling. Coaching och mental träning online med Johannes Stenmarck." path="/" />
+  <Seo title="Coaching och mental träning online | Hypnomarck" description="Ett personligt möte med Johannes Stenmarck. Coaching, mental träning och hypnos online, med utrymme för dina frågor och det du vill utforska." path="/" />
   <a className="hp-skip" href="#innehall">Hoppa till innehållet</a>
-
   <header className="hp-header">
-   <a href="#" className="hp-brand hp-lockup" aria-label="Hypnomarck – Förändring börjar under ytan. Startsida"><img src="/android-chrome-512x512.png" alt="" width="70" height="70"/><span className="hp-brand-text"><span className="hp-wordmark">hypnomarck</span><span className="hp-tagline">Förändring börjar under ytan.</span></span></a>
-   <nav className="hp-nav" aria-label="Huvudmeny"><a href="#for-dig">För dig</a><a href="#sa-gar-det-till">Så går det till</a><a href="#om-johannes">Om Johannes</a><a href="#sessioner">Sessioner</a></nav>
-   <button className="hp-button hp-small hp-header-cta" onClick={open}>Boka gratis konsultation <span aria-hidden="true">↗</span></button>
-   <button className="hp-menu" aria-expanded={menu} aria-controls="hp-mobile-menu" onClick={()=>setMenu(!menu)}>{menu ? 'Stäng meny' : 'Meny'}</button>
+   <Wordmark />
+   <nav className="hp-nav" aria-label="Huvudmeny">{navigation.map(([name, id]) => <a key={id} href={'#' + id}>{name}</a>)}</nav>
+   <button className="hp-menu" aria-expanded={menu} aria-controls="hp-mobile-menu" onClick={() => setMenu(!menu)}>{menu ? 'Stäng meny' : 'Meny'}</button>
   </header>
-  {menu && <nav id="hp-mobile-menu" className="hp-mobile-nav" aria-label="Mobilmeny">{[['För dig','for-dig'],['Så går det till','sa-gar-det-till'],['Om Johannes','om-johannes'],['Sessioner','sessioner']].map(([name,id])=><a key={id} href={'#'+id} onClick={()=>setMenu(false)}>{name}</a>)}<button className="hp-button" onClick={open}>Boka gratis konsultation</button></nav>}
+  {menu && <nav id="hp-mobile-menu" className="hp-mobile-nav" aria-label="Mobilmeny">{navigation.map(([name, id]) => <a key={id} href={'#' + id} onClick={() => setMenu(false)}>{name}</a>)}</nav>}
   <main id="innehall">
-   <section className="hp-hero">
-    <div className="hp-hero-copy"><p className="hp-eyebrow">COACHING & MENTAL TRÄNING ONLINE</p><h1>Från självtvivel<br/>till mer <em>handlingsutrymme.</em></h1><p className="hp-lead">Du vet vad du vill. Ändå kan steget dit kännas långt.</p><p>Jag hjälper dig att utforska det som håller dig tillbaka och arbeta mot det du vill göra mer plats för i livet.</p><div className="hp-actions"><button className="hp-button" onClick={open}>Boka gratis konsultation <span aria-hidden="true">↗</span></button><a className="hp-text-link" href="#sa-gar-det-till">Så går det till <span aria-hidden="true">↓</span></a></div><p className="hp-note">30 minuter · Online · Kostnadsfritt första samtal</p></div>
-    <div className="hp-hero-image"><img src="/background.jpg" alt="En stilla stig genom en grön skog" fetchpriority="high"/></div><a className="hp-explore" href="#for-dig">Utforska i din egen takt <span aria-hidden="true">↓</span></a>
+   <section className="hp-hero" aria-labelledby="hero-title">
+    <div className="hp-hero-copy">
+     <h1 id="hero-title">Coaching & mental träning online</h1>
+     <div className="hp-actions"><button className="hp-button" onClick={open}>Boka gratis konsultation</button><a className="hp-text-link" href="#sa-gar-det-till">Så går det till</a></div>
+    </div>
+    <div className="hp-hero-image"><img src="/background.jpg" alt="En stilla stig genom en grön skog" fetchpriority="high" /></div>
+    <a className="hp-explore" href="#for-dig">Utforska i din egen takt <span aria-hidden="true">↓</span></a>
    </section>
-   <div className="hp-intro"><img src="/profile.jpg" alt="Johannes Stenmarck"/><div><p>Johannes Stenmarck</p><span>Certifierad hypnoterapeut och coach</span></div><a href="#om-johannes">Lär känna mig ↗</a></div>
-   <section className="hp-section" id="for-dig"><div className="hp-section-heading"><p className="hp-eyebrow">KÄNNER DU IGEN DIG?</p><h2>När du vill framåt,<br/>men håller dig tillbaka.</h2><p>Vi utgår från din vardag och det du vill kunna göra annorlunda.</p></div><div className="hp-three">
-    <article><span className="hp-number">01</span><h3>Våga ta plats</h3><p>Du vill uttrycka en idé, stå inför andra eller visa mer av dig själv – utan att självtvivlet får styra varje steg.</p></article>
-    <article><span className="hp-number">02</span><h3>Komma till handling</h3><p>Du skjuter upp sådant som betyder något för dig. Du vill förstå dina vanor och hitta ett första steg som går att ta.</p></article>
-    <article><span className="hp-number">03</span><h3>Stärka din självtillit</h3><p>Du vill lyssna mer på dig själv, göra medvetna val och ge dina egna behov och ambitioner större utrymme.</p></article>
+   <section className="hp-welcome hp-section" id="for-dig">
+    <div className="hp-welcome-copy"><p className="hp-eyebrow">HEJ, JAG ÄR JOHANNES</p><h2>Du behöver inte ha<br/>ett färdigt svar.</h2>
+     <p className="hp-lead">Kanske är det något du längtar efter. Kanske ett mönster du börjar bli trött på. Eller bara en känsla av att du vill ge dig själv lite mer utrymme.</p>
+     <p>Hos mig får du stanna upp och titta närmare på det. Jag lyssnar, ställer frågor och utforskar tillsammans med dig vad som kan vara ett nästa steg.</p>
+     <p>Du behöver inte veta precis var du ska börja. Det kan vi hitta tillsammans.</p>
+     <a className="hp-text-link" href="#om-johannes">Lite mer om mig <span aria-hidden="true">↘</span></a>
+    </div>
+    <figure className="hp-welcome-portrait"><img src="/profile.jpg" alt="Johannes Stenmarck" loading="lazy" width="800" height="1000"/><figcaption><span>Johannes Stenmarck</span>Certifierad hypnoterapeut och coach</figcaption></figure>
+   </section>
+   <section className="hp-recognition" aria-labelledby="recognition-title"><div className="hp-section hp-recognition-inner">
+    <div><p className="hp-eyebrow">DET DU BÄR MED DIG</p><h2 id="recognition-title">Kanske känner<br/>du igen dig.</h2><p>Det behöver inte vara en stor livsfråga. Ibland är det det återkommande i vardagen som man vill förstå lite bättre.</p></div>
+    <div className="hp-recognition-stories">
+     <article><h3>Du har något att säga.<br/>Men håller det för dig själv.</h3><p>En tanke på mötet. Något du vill säga i en relation. Efteråt tänker du på det som aldrig blev sagt och önskar att du hade vågat.</p></article>
+     <article><h3>Du väntar på rätt tillfälle<br/>att börja.</h3><p>Det du vill göra betyder något för dig. Ändå blir det uppskjutet, medan annat får ta plats. Du undrar vad det är som gör steget så svårt.</p></article>
+     <article><h3>Du lyssnar på andra.<br/>Och vill kunna höra dig själv också.</h3><p>Du vill känna efter vad du själv behöver, vad du vill säga ja till och vad du vill göra mer plats för.</p></article>
+     <p className="hp-recognition-end">Om något av det här känns bekant kan det vara en början på vårt samtal.</p>
+    </div>
    </div></section>
-   <section className="hp-process" id="sa-gar-det-till"><div><p className="hp-eyebrow">ETT STEG I TAGET</p><h2>Vi börjar med<br/>ett samtal.</h2><p>Du behöver inte bestämma dig för ett helt upplägg från början. Först undersöker vi om vi passar att arbeta tillsammans.</p><button className="hp-button hp-light" onClick={open}>Hitta ditt första steg ↗</button></div><ol>{[['Vi pratar om dina mål','Under en gratis konsultation på cirka 30 minuter får du berätta vad du söker och ställa dina frågor.'],['Vi väljer ett upplägg','Om vi går vidare kommer vi överens om mål och arbetssätt. Samtal, mental träning och hypnos kan ingå.'],['Vi följer upp i vardagen','Vi pratar om vad du tar med dig från sessionerna och hur du vill omsätta det i handling.']].map(([title,text],i)=><li key={title}><span>0{i+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></section>
-   <section className="hp-about hp-section" id="om-johannes"><div className="hp-portrait"><img src="/profile.jpg" alt="Johannes Stenmarck, certifierad hypnoterapeut och coach" loading="lazy"/></div><div><p className="hp-eyebrow">MÄNNISKAN BAKOM HYPNOMARCK</p><h2>Hej, jag är Johannes.</h2><p className="hp-lead">Jag vill skapa utrymme för dig att utforska vad du vill – och vad som står i vägen.</p><p>Jag är certifierad inom Hypnoterapi 2.0 av Dan och Sara Ahtola på Ahtola Vision. I mitt arbete möts samtal, mental träning och hypnos, med dina mål som utgångspunkt.</p><p>Vi ses online, i ett personligt möte där det finns plats för frågor och eftertanke.</p><div className="hp-boundary"><strong>Tydliga ramar, från början.</strong><p>Jag är inte legitimerad vårdpersonal. Mitt erbjudande gäller personlig utveckling och ersätter inte hälso- och sjukvård.</p></div><Link className="hp-text-link" to="/om-mig">Mer om min bakgrund ↗</Link></div></section>
-   <section className="hp-section hp-pricing" id="sessioner"><div className="hp-section-heading"><p className="hp-eyebrow">SESSIONER & UPPLÄGG</p><h2>Börja där du är.</h2><p>Första samtalet är gratis. Vi pratar om vad som kan passa innan du väljer ett betalt upplägg.</p></div><div className="hp-three">
-    <article><p className="hp-eyebrow">FÖRSTA STEGET</p><h3>Gratis konsultation</h3><p className="hp-price">0 kr</p><p>30 minuter online</p><ul><li>Prata om dina mål</li><li>Ställ dina frågor</li><li>Utforska om vi passar ihop</li></ul><button className="hp-button" onClick={open}>Boka gratis konsultation</button></article>
-    <article><p className="hp-eyebrow">ETT FOKUSERAT MÖTE</p><h3>Enskild session</h3><p className="hp-price">3 000 kr</p><p>75–90 minuter online</p><ul><li>En individuell session</li><li>Förinspelad mental träning</li><li>Uppföljningssamtal</li></ul><button className="hp-button hp-outline" onClick={open}>Prata om upplägget</button></article>
-    <article><p className="hp-eyebrow">UTRYMME ÖVER TID</p><h3>Fyra sessioner</h3><p className="hp-price">8 000 kr</p><p>Ett sammanhängande upplägg</p><ul><li>Fyra individuella sessioner</li><li>Fyra förinspelade sessioner</li><li>Uppföljningssamtal</li></ul><button className="hp-button hp-outline" onClick={open}>Prata om upplägget</button></article>
+   <section className="hp-personal hp-section" id="om-johannes">
+    <div><p className="hp-eyebrow">OM MIG OCH VÅRT MÖTE</p><h2>Du möter mig.<br/>Vi utgår från dig.</h2><p className="hp-signoff">Johannes</p></div>
+    <div><p className="hp-lead">Jag vill att det ska finnas plats för både det du kan sätta ord på och det som behöver lite mer tid.</p><p>Jag heter Johannes Stenmarck och är certifierad hypnoterapeut och coach, utbildad av Dan och Sara Ahtola på Ahtola Vision. I mitt arbete möts samtal, mental träning och hypnos.</p><p>Vi pratar om vad du vill utforska och om hur vi kan arbeta med det. Jag berättar om metoderna och du får fråga, känna efter och vara med och forma upplägget.</p><p>Vi ses online. Du är på en plats där du känner dig bekväm och kan vara ostörd.</p><p className="hp-scope">Mitt arbete gäller personlig utveckling. Jag har ingen vårdlegitimation och erbjuder inte hälso- och sjukvård.</p></div>
+   </section>
+   <section className="hp-conversation" id="sa-gar-det-till"><div className="hp-conversation-inner">
+    <div className="hp-conversation-heading"><p className="hp-eyebrow">SÅ GÅR DET TILL</p><h2>Först får vi<br/>träffas en stund.</h2><p>Du behöver inte bestämma dig för ett samarbete för att ta kontakt. Ett första samtal är också ett sätt att känna efter.</p></div>
+    <div className="hp-conversation-body"><h3>Vi börjar med det du funderar på.</h3><p>Under en gratis konsultation på cirka 30 minuter får du berätta så mycket eller lite du vill. Jag lyssnar, berättar om mitt arbetssätt och svarar på dina frågor.</p><h3>Du får känna efter.</h3><p>Om du vill fortsätta pratar vi om ett upplägg, vad det kostar och vad du vill få ut av våra möten. Du väljer sedan om du vill gå vidare.</p><h3>Vi tar det vidare tillsammans.</h3><p>Under sessionerna arbetar vi med det vi kommit överens om. Vi följer upp vad du tar med dig och vad du vill prova i vardagen.</p><button className="hp-text-link" onClick={() => setPrices(true)}>Läs om sessioner och priser <span aria-hidden="true">↗</span></button></div>
    </div></section>
-   <section className="hp-faq hp-section" id="fragor"><div><p className="hp-eyebrow">INFÖR VÅRT FÖRSTA SAMTAL</p><h2>Det är okej<br/>att ha frågor.</h2><Link className="hp-text-link" to="/om-hypnos">Läs mer om hypnos ↗</Link></div><div>{questions.map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
-   <section className="hp-final"><p className="hp-eyebrow">DITT NÄSTA STEG</p><h2>Vad vill du göra<br/>mer plats för?</h2><p>Vi börjar med ett kostnadsfritt samtal om dig och dina mål.</p><button className="hp-button hp-light" onClick={open}>Boka gratis konsultation ↗</button><span>30 minuter online. Du väljer sedan hur du vill gå vidare.</span></section>
+   <section className="hp-faq hp-section" id="fragor"><div><p className="hp-eyebrow">OM DU FUNDERAR</p><h2>Det finns plats<br/>för dina frågor.</h2><p>Här är några svar att börja med. Du får också fråga mig direkt.</p><button className="hp-text-link" onClick={() => setPrices(true)}>Sessioner och priser <span aria-hidden="true">↗</span></button><Link className="hp-text-link" to="/om-hypnos">Läs mer om hypnos <span aria-hidden="true">↗</span></Link></div><div>{questions.map(([q, a]) => <details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section>
+   <section className="hp-invitation"><div className="hp-invitation-inner"><p className="hp-eyebrow">NÄR DU VILL</p><h2>Är det något du<br/>vill titta närmare på?</h2><p>Du är välkommen att höra av dig.<br/>Vi kan börja med ett samtal och se vad som tar form där.</p><button className="hp-button" onClick={open}>Boka gratis konsultation</button><a href="mailto:info@hypnomarck.se">Eller skriv till mig på info@hypnomarck.se</a></div></section>
   </main>
-  <footer className="hp-footer"><div><a href="#" className="hp-brand hp-lockup" aria-label="Hypnomarck – Förändring börjar under ytan. Startsida"><img src="/android-chrome-512x512.png" alt="" width="70" height="70"/><span className="hp-brand-text"><span className="hp-wordmark">hypnomarck</span><span className="hp-tagline">Förändring börjar under ytan.</span></span></a></div><div><a href="mailto:info@hypnomarck.se">info@hypnomarck.se</a><a href="https://www.instagram.com/hypnomarck/" target="_blank" rel="noreferrer">Instagram ↗</a><Link to="/integritet-forhandsversion">Om uppgifter i förhandsversionen</Link></div><small>© {new Date().getFullYear()} Johannes Stenmarck · Coaching och mental träning online</small></footer>
+  <footer className="hp-footer"><div><Wordmark /></div><div><a href="mailto:info@hypnomarck.se">info@hypnomarck.se</a><a href="https://www.instagram.com/hypnomarck/" target="_blank" rel="noreferrer">Instagram ↗</a><button className="hp-footer-link" onClick={() => setPrices(true)}>Sessioner och priser</button><Link to="/integritet-forhandsversion">Om uppgifter i förhandsversionen</Link></div><small>© {new Date().getFullYear()} Johannes Stenmarck · Coaching och mental träning online</small></footer>
   <div className="hp-preview">Förhandsversion · Prova formuläret – inga uppgifter skickas.</div>
-  <BookingModal open={booking} onClose={()=>setBooking(false)} />
+  <BookingModal open={booking} onClose={() => setBooking(false)} />
+  <SessionPrices open={prices} onClose={() => setPrices(false)} />
  </div>;
 }
