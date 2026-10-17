@@ -18,13 +18,14 @@ export default function SiteNav({
     } else if (location.pathname === "/om-hypnos" || location.pathname === "/om-mig") {
       document.getElementById("free-session")?.scrollIntoView({ behavior: "smooth" });
     } else {
-      navigate("/");
-      setTimeout(() => document.getElementById("free-session")?.scrollIntoView({ behavior: "smooth" }), 150);
+      navigate("/#gratis-introduktion");
     }
   };
 
   const goHomeScroll = (id) => {
     setShowMobileMenu(false);
+    if (id === 'pricing') { navigate('/#priser'); return; }
+    if (id === 'faq') { navigate('/#fragor'); return; }
     if (isHome) {
       scrollToId(id);
     } else {

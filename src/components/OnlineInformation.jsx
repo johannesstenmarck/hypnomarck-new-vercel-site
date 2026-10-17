@@ -1,30 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import SessionOptions from './SessionOptions.jsx';
+import { availability } from '../content/practice.js';
 
 export default function OnlineInformation({ children }) {
-  return (
-    <>
-          <p className="text-lg leading-relaxed mb-6">Hos Hypnomarck träffar du mig via videosamtal. Jag tar emot privatpersoner online för hypnoterapi och förändringscoaching. Vi börjar med en kostnadsfri konsultation där vi pratar om vad du vill arbeta med och om mitt arbetssätt passar dig.</p>
-          {children}
-          <section className="mt-10 space-y-4 leading-relaxed text-lg">
-            <h2 className="text-2xl font-serif">Så går det till</h2>
-            <ol className="list-decimal pl-6 space-y-3">
-              <li><strong>Skicka en förfrågan.</strong> Använd bokningsformuläret så återkommer jag för att hitta en tid. En förfrågan är inte en bekräftad bokning.</li>
-              <li><strong>Vi ses för en gratis konsultation.</strong> Samtalet tar cirka 30 minuter. Du får berätta om dina mål och ställa frågor om upplägget.</li>
-              <li><strong>Vi kommer överens om nästa steg.</strong> Om du vill gå vidare planerar vi fortsättningen tillsammans. En enskild session tar 75–90 minuter.</li>
-            </ol>
-          </section>
-          <section className="mt-10 space-y-4 leading-relaxed text-lg">
-            <h2 className="text-2xl font-serif">Inför ett videosamtal</h2>
-            <p>Välj gärna en lugn plats där du kan sitta bekvämt och prata ostört. Kontrollera internetanslutning, kamera och ljud innan samtalet. Hör av dig om du har frågor om tekniken eller dina förutsättningar.</p>
-            <h2 className="text-2xl font-serif pt-4">Vad kostar det?</h2>
-            <p>Den första konsultationen är gratis. Aktuella alternativ finns på startsidan under <a href="/#pricing" className="underline">sessioner och priser</a>. Vi går igenom vilket upplägg som är aktuellt innan du bestämmer dig.</p>
-            <h2 className="text-2xl font-serif pt-4">Vem möter jag?</h2>
-            <p>Jag heter Johannes Stenmarck och är certifierad inom Trancemorf Hypnoterapi av Dan och Sara Ahtola på Ahtola Vision. <Link to="/om-mig" className="underline">Läs om min bakgrund och mitt arbetssätt</Link>.</p>
-            <h2 className="text-2xl font-serif pt-4">Vill du förstå hypnos innan du bokar?</h2>
-            <p>På sidan <Link to="/om-hypnos" className="underline">Vad är hypnos?</Link> hittar du vanliga frågor och information om forskningsläget. Hypnoterapi ersätter inte medicinsk eller psykiatrisk vård.</p>
-            <h2 className="text-2xl font-serif pt-4">Tar du även emot på plats?</h2>
-            <p>Privatpersoner träffar jag online. För företagsuppdrag kan jag även komma till arbetsplatsen. Kontakta mig på <a href="mailto:info@hypnomarck.se" className="underline">info@hypnomarck.se</a> för att prata om era behov.</p>
-          </section>
-    </>
-  );
+  return <div className="hp-online-reading">
+    <p className="hp-lead">Du träffar mig online för coaching och personlig utveckling med hypnos som verktyg. Vi börjar med ett samtal om det du vill utforska och om mitt arbetssätt passar dig.</p>
+    <section><h2>Första kontakten.</h2><p>Du skickar en kontaktförfrågan. Jag återkommer personligen via e-post med förslag på en tid för konsultationen. En förfrågan är inte en bekräftad bokning.</p><p>Konsultationen är kostnadsfri och tar 30 minuter. Jag föredrar telefon för det första samtalet; Google Meet finns som alternativ. Du behöver inte ha ett färdigt mål. Vi pratar om vad du vill arbeta med och hur vi skulle kunna märka en förändring.</p><p>{availability}</p><p>Om vi bestämmer oss för att arbeta tillsammans kan vi boka den första sessionen direkt. Behöver vi mer tid att hitta en tid fortsätter vi via e-post.</p></section>
+    <section><h2>Under en session.</h2><p>Vi har 90 minuter tillsammans via videosamtal. Varje möte börjar med att vi pratar om hur du har det, vad som hänt sedan sist och vad du vill förändra eller ge mer plats åt.</p><p>Jag beskriver hypnos som fokuserad uppmärksamhet där du får rikta mer av uppmärksamheten inåt. Jag guidar med frågor, föreställningar och förslag, och du utforskar det som dyker upp. Det kan vara känslor, kroppsliga förnimmelser, bilder eller tankar.</p><p>Du väljer vad du vill dela. Du får pausa, säga nej eller byta riktning. Vi behöver inte pressa fram något eller komma fram till ett visst slags upplevelse.</p></section>
+    <section><h2>Mellan våra möten.</h2><p>Mental träning är ett sätt att öva på nya känslotillstånd, vanor och sätt att se på dig själv. Med förinspelade sessioner på ungefär 20–30 minuter får du fortsätta utforska och stärka det vi arbetat med. Inspelningarna kan användas även efter att vi avslutat programmet.</p><p>De börjar med guidning till avslappning och fokuserad uppmärksamhet. Därefter arbetar vi enligt Trancemorf-metoden, med utgångspunkt i det du utforskat under våra sessioner. Vi följer upp hur övningen fungerar i din vardag.</p><details className="hp-reading-details"><summary>Inför videosamtal och egen övning <span aria-hidden="true">+</span></summary><p>Hitta en lugn, bekväm plats där du kan vara ostörd. Inför videosamtalet kontrollerar du ljud, kamera och uppkoppling. Jag skickar praktisk information när vi bestämt en tid.</p><p>Använd inspelningarna när du kan ägna dig åt dem fullt ut. Lyssna aldrig när du kör eller gör något som kräver din uppmärksamhet. Det finns i dagsläget inget manus eller textalternativ.</p></details></section>
+    <section><h2>Vi följer upp.</h2><p>När sessionerna är avslutade och vi tillsammans bedömer att vi nått målet följer vi upp efter några veckor. Uppföljningssamtalet tar 30 minuter. Vi pratar om vad som fungerar, vad som behöver mer uppmärksamhet och hur du kan möta sådant som drar mot gamla mönster.</p><p>Jag erbjuder stöd och guidning. Du deltar i förändringsarbetet under våra träffar och i vardagen mellan dem. Vi kan inte bestämma i förväg exakt hur snabbt en förändring sker eller hur den blir för just dig.</p></section>
+    <details className="hp-online-prices hp-reading-details"><summary>Sessioner, innehåll och priser <span aria-hidden="true">+</span></summary><SessionOptions/></details>
+    <section><h2>Är det här rätt hjälp för dig?</h2><p>Det bedömer vi tillsammans under konsultationen. Mitt arbete gäller coaching och personlig utveckling och ersätter inte psykiatrisk eller medicinsk vård. Om du behöver annan hjälp än den jag kan erbjuda är jag tydlig med det och rekommenderar en relevant vårdgivare eller annan professionell.</p><details className="hp-reading-details"><summary>Mitt arbetsområde och mina gränser <span aria-hidden="true">+</span></summary><p>Jag arbetar inte med barn under tolv år. Jag tar inte heller emot personer med autism, eftersom jag saknar den särskilda kompetens jag bedömer att jag behöver för att anpassa mitt arbete. Det är en gräns för mitt eget erbjudande.</p><p>Schizofreni och andra psykiatriska tillstånd som kräver specialistkompetens ligger utanför mitt arbetsområde.</p></details><p>Jag är utbildad inom Trancemorf Hypnoterapi via Dan och Sara Ahtola på Ahtola Vision. <Link to="/om-mig">Lär känna mig och min bakgrund.</Link></p></section>
+    {children}
+  </div>;
 }

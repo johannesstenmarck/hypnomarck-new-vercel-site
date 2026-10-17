@@ -1,241 +1,41 @@
-import { useState, useEffect } from "react";
-import { trackBookingEvent } from "../analytics.js";
-
-const EXPERIENCE_LABELS = {
-  "": "",
-  no: "Nej, ingen erfarenhet",
-  therapy: "Ja, terapi",
-  hypnosis: "Ja, hypnos",
-  both: "Ja, både terapi och hypnos"
-};
-
+import { useState, useEffect, useRef } from 'react';
+import '../preview.css';
+import { availability } from '../content/practice.js';
 export default function BookingModal({ open, onClose }) {
-  const [phase, setPhase] = useState("form");
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    experience: "",
-    preferredTimes: "",
-    consent: false
-  });
-
-  useEffect(() => {
-    if (!open) {
-      setPhase("form");
-      setError("");
-      setSubmitting(false);
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-        experience: "",
-        preferredTimes: "",
-        consent: false
-      });
-    }
-  }, [open]);
-
-  if (!open) return null;
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setError("");
-    setSubmitting(true);
-
-    const payload = {
-      name: form.name.trim(),
-      email: form.email.trim(),
-      phone: form.phone.trim(),
-      message: form.message.trim(),
-      experience: EXPERIENCE_LABELS[form.experience] || form.experience || "",
-      preferredTimes: form.preferredTimes.trim(),
-      consent: form.consent
-    };
-
-    try {
-      const res = await fetch("/api/send-booking", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const ct = res.headers.get("content-type") || "";
-      if (!ct.includes("application/json")) {
-        throw new Error(
-          "Boknings-API svarade inte korrekt (lokalt: använd `vercel dev` eller testa efter deploy till Vercel)."
-        );
-      }
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json.ok) {
-        throw new Error(json.error || "Serverfel");
-      }
-      setPhase("thanks");
-      // Count a received request, not a click or a failed submission.
-      trackBookingEvent("generate_lead");
-    } catch (err) {
-      setError(err.message || "Något gick fel. Försök igen eller maila info@hypnomarck.se.");
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
-  return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-stone-200 flex justify-between items-center sticky top-0 bg-white z-10">
-          <h3 className="text-2xl font-serif text-stone-800">Boka gratis konsultation</h3>
-          <button type="button" onClick={onClose} className="p-2 hover:bg-stone-100 rounded-full transition">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="p-6">
-          {phase === "thanks" ? (
-            <div className="text-stone-700 text-center py-8 px-4 leading-relaxed text-lg">
-              <p>Tack för din förfrågan! Jag återkommer till dig inom 24 h.</p>
-              <p className="mt-6 text-base">
-                Med vänlig hälsning
-                <br />
-                Johannes Stenmarck – Hypnomarck
-              </p>
-            </div>
-          ) : (
-            <>
-              <p className="text-stone-600 mb-6 leading-relaxed">
-                Fyll i formuläret nedan så hör jag av mig inom 24 timmar för att boka in en tid som passar dig. Konsultationen är
-                kostnadsfri och tar cirka 30 minuter.
-              </p>
-
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                {error ? <p className="booking-form-error text-red-600 text-sm text-center">{error}</p> : null}
-
-                <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2" htmlFor="booking-name">
-                    Namn *
-                  </label>
-                  <input
-                    id="booking-name"
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                    className="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
-                    placeholder="Ditt fullständiga namn"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2" htmlFor="booking-email">
-                    E-post *
-                  </label>
-                  <input
-                    id="booking-email"
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                    className="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
-                    placeholder="din@epost.se"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2" htmlFor="booking-phone">
-                    Telefon *
-                  </label>
-                  <input
-                    id="booking-phone"
-                    type="tel"
-                    required
-                    value={form.phone}
-                    onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                    className="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
-                    placeholder="070-123 45 67"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2" htmlFor="booking-message">
-                    Vad söker du hjälp med? *
-                  </label>
-                  <textarea
-                    id="booking-message"
-                    rows={4}
-                    required
-                    value={form.message}
-                    onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                    className="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
-                    placeholder="Berätta kort om vad du vill arbeta med..."
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2" htmlFor="booking-experience">
-                    Har du tidigare erfarenhet av terapi eller hypnos?
-                  </label>
-                  <select
-                    id="booking-experience"
-                    value={form.experience}
-                    onChange={(e) => setForm((f) => ({ ...f, experience: e.target.value }))}
-                    className="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
-                  >
-                    <option value="">Välj ett alternativ</option>
-                    <option value="no">Nej, ingen erfarenhet</option>
-                    <option value="therapy">Ja, terapi</option>
-                    <option value="hypnosis">Ja, hypnos</option>
-                    <option value="both">Ja, både terapi och hypnos</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-stone-700 mb-2" htmlFor="booking-times">
-                    Föredragna tider
-                  </label>
-                  <input
-                    id="booking-times"
-                    type="text"
-                    value={form.preferredTimes}
-                    onChange={(e) => setForm((f) => ({ ...f, preferredTimes: e.target.value }))}
-                    className="w-full px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
-                    placeholder="T.ex. vardagar förmiddag, helger efter lunch..."
-                  />
-                </div>
-
-                <div className="flex items-start">
-                  <input
-                    type="checkbox"
-                    id="booking-consent"
-                    checked={form.consent}
-                    onChange={(e) => setForm((f) => ({ ...f, consent: e.target.checked }))}
-                    className="mt-1 mr-2"
-                  />
-                  <label htmlFor="booking-consent" className="text-sm text-stone-600">
-                    Jag godkänner att mina uppgifter behandlas enligt integritetspolicyn
-                  </label>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full px-6 py-3 bg-emerald-700 text-white rounded-full hover:bg-emerald-800 transition text-lg font-medium disabled:opacity-60"
-                >
-                  {submitting ? "Skickar…" : "Skicka bokningsförfrågan"}
-                </button>
-              </form>
-
-              <p className="text-xs text-stone-500 mt-4 text-center">
-                Du kommer att få en bekräftelse via e-post inom 24 timmar. Konsultationen sker online via videosamtal.
-              </p>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+ const dialog = useRef(null);
+ const [phase, setPhase] = useState('form');
+ const [channel, setChannel] = useState('phone');
+ useEffect(() => {
+  if (!open) return;
+  setPhase('form'); setChannel('phone');
+  const previous = document.activeElement;
+  const overflow = document.body.style.overflow;
+  const node = dialog.current;
+  document.body.style.overflow = 'hidden';
+  node.showModal();
+  node.querySelector('input[name="name"]')?.focus();
+  return () => { node.close(); document.body.style.overflow = overflow; previous?.focus(); };
+ }, [open]);
+ useEffect(() => { if (open && phase === 'thanks') dialog.current?.querySelector('.hb-success')?.focus(); }, [open, phase]);
+ if (!open) return null;
+ const keepFocus = e => {
+  if (e.key !== 'Tab') return;
+  const items = [...dialog.current.querySelectorAll('button,input,select,a,summary')].filter(el => el.getClientRects().length && !el.disabled);
+  const first = items[0], last = items[items.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+ };
+ return <dialog ref={dialog} className="hb-dialog" aria-modal="true" aria-labelledby="booking-title" aria-describedby="booking-preview" onKeyDown={keepFocus} onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { const r = e.currentTarget.getBoundingClientRect(); if (e.target === e.currentTarget && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom)) onClose(); }}>
+  <div className="hb-heading"><div><p className="hb-eyebrow">ETT FÖRSTA SAMTAL</p><h2 id="booking-title">Boka gratis konsultation</h2></div><button className="hb-close" type="button" aria-label="Stäng konsultationsformuläret" onClick={onClose}>×</button></div>
+  <p id="booking-preview" className="hb-preview">Förhandsversion: ingenting skickas eller sparas.</p>
+  {phase === 'thanks' ? <div className="hb-success" role="status" tabIndex={-1}><h3>Så här avslutas din förfrågan.</h3><p>När kontaktformuläret är i drift får du en automatisk mottagningsbekräftelse via e-post. Därefter återkommer jag personligen med förslag på tid för konsultationen. Mottagningsbekräftelsen är inte en bokad tid.</p><p>Detta var ett test. Ingen förfrågan har skickats och ingen tid är bokad.</p><button className="hb-submit" onClick={onClose}>Stäng förhandsvisningen</button></div> : <>
+  <p className="hb-introduction">Cirka 30 minuter, utan kostnad. Lämna dina kontaktuppgifter så kommer vi överens om en tid via e-post.</p>
+  <form onSubmit={e => { e.preventDefault(); const data = new FormData(e.currentTarget); if (!String(data.get('name')).trim()) { e.currentTarget.elements.name.setCustomValidity('Skriv ditt namn.'); e.currentTarget.elements.name.reportValidity(); return; } if (channel === 'phone' && !String(data.get('phone')).trim()) { e.currentTarget.elements.phone.setCustomValidity('Ange ett telefonnummer eller välj Google Meet.'); e.currentTarget.elements.phone.reportValidity(); return; } setPhase('thanks'); }}>
+   <div className="hb-grid"><div><label htmlFor="booking-name">Namn *</label><input id="booking-name" name="name" autoComplete="name" maxLength={100} required onInput={e => e.target.setCustomValidity('')} /></div><div><label htmlFor="booking-email">E-post *</label><input id="booking-email" name="email" type="email" autoComplete="email" maxLength={254} required /></div></div>
+   <fieldset className="hb-channel"><legend>Hur vill du ha första samtalet?</legend><div><label><input type="radio" name="contactMethod" value="phone" checked={channel === 'phone'} onChange={() => setChannel('phone')} />Telefon</label><label><input type="radio" name="contactMethod" value="meet" checked={channel === 'meet'} onChange={() => setChannel('meet')} />Google Meet</label></div></fieldset>
+   {channel === 'phone' ? <div><label htmlFor="booking-phone">Telefonnummer *</label><input id="booking-phone" name="phone" type="tel" autoComplete="tel" maxLength={30} required onInput={e => e.target.setCustomValidity('')} /><p className="hb-channel-note">Jag föredrar telefon för första samtalet. Jag ringer på den tid vi har kommit överens om.</p></div> : <p className="hb-channel-note">Du behöver inte ange telefonnummer. Du får en möteslänk när vi har bestämt en tid.</p>}
+   <details><summary>Önskemål om tid (valfritt)</summary><p className="hb-channel-note">{availability}</p><label htmlFor="booking-times">När passar det bäst?</label><select id="booking-times" name="preferredTimes" defaultValue=""><option value="">Jag är flexibel</option><option>Vardagar, förmiddag</option><option>Vardagar, eftermiddag</option><option>Kväll, om möjligt</option><option>Helg, om möjligt</option></select></details>
+   <p className="hb-privacy">Du behöver inte beskriva privata besvär här. <a href="/integritet-forhandsversion" target="_blank" rel="noreferrer">Om testformuläret (ny flik)</a>.</p><button className="hb-submit" type="submit">Skicka konsultationsförfrågan</button><p className="hb-request-note">En kontaktförfrågan. Tiden är bokad först när vi har kommit överens.</p>
+  </form></>}
+ </dialog>;
 }
