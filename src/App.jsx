@@ -19,12 +19,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePreview />} />
         <Route path="/integritet-forhandsversion" element={<PreviewPrivacy />} />
+        <Route path="/om-mig" element={<OmMigPage />} />
+        <Route path="/hypnoterapi-online" element={<OnlinePage />} />
         <Route path="/" element={<SiteShell />}>
           <Route path="emetofobi" element={<EmetofobiPage />} />
           <Route path="scenskrack" element={<ScenskrackPage />} />
           <Route path="om-hypnos" element={<OmHypnosPage />} />
-          <Route path="om-mig" element={<OmMigPage />} />
-          <Route path="hypnoterapi-online" element={<OnlinePage />} />
           <Route path="prokrastinering-sjalvtvivel-freeze" element={<ProkrastineringFreezePage />} />
         </Route>
       </Routes>

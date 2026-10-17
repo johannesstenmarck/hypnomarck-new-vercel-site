@@ -37,9 +37,9 @@ export const PAGE_SEO = {
   },
   omMig: {
     path: "/om-mig",
-    title: "Johannes Stenmarck | Certifierad hypnoterapeut – Hypnomarck",
+    title: "Johannes Stenmarck – Hypnoterapeut och Coach | Hypnomarck",
     description:
-      "Lär känna Johannes Stenmarck, certifierad i Trancemorf Hypnoterapi av Dan och Sara Ahtola på Ahtola Vision. Privatpersoner online och företagsuppdrag på arbetsplatsen.",
+      "Lär känna Johannes Stenmarck, hypnoterapeut och coach med över 20 år som skådespelare. Läs om hans väg till hypnos och hur han möter dig.",
     keywords:
       "Johannes Stenmarck hypnoterapeut, hypnoterapeut om mig, hypnos coach Stockholm, Hypnomarck"
   },

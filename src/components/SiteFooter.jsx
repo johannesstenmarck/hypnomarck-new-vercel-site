@@ -7,6 +7,7 @@ export default function SiteFooter() {
   const isHypnos = location.pathname === "/om-hypnos";
 
   const scrollOrGoHome = (id) => {
+    if (id === 'pricing') { navigate('/#priser'); return; }
     if (isHome) {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     } else {

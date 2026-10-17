@@ -222,3 +222,60 @@ dialog.hb-dialog::backdrop{background:#10251bc9;backdrop-filter:blur(4px)}
  .hb-dialog .hb-heading h2{font-size:26px}
 }
 @media(max-width:350px){.hp-header-scrolled .hp-lockup .hp-wordmark{font-size:24px}.hp-hero h1{font-size:10px;letter-spacing:1.2px}.hb-dialog .hb-grid{grid-template-columns:1fr;gap:0}}
+
+/* The interview adds a person and a working relationship to the shared reading surfaces. */
+.hp-method.hp-sheet{background:#f1f0e7}
+.hp-personal .hp-personal-detail{font-size:14px;color:#53614e}
+.hp-qualification{font-size:13px!important;color:#53614e;border-top:1px solid #cbd2c3;padding-top:22px}
+.hp-reading-details{border-block:1px solid #cbd2c3;padding:18px 0;margin:26px 0}
+.hp-reading-details summary{display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;list-style:none;font-size:14px;line-height:1.6}
+.hp-reading-details summary::-webkit-details-marker{display:none}
+.hp-reading-details summary>span{font-size:22px;font-weight:400;flex-shrink:0}
+.hp-reading-details[open] summary>span{transform:rotate(45deg)}
+.hp-reading-details>p:first-of-type{margin-top:20px}
+.hp-listen .hp-reading-details p{font-size:13px;line-height:1.85}
+.hp-voices figcaption>span{display:block;font-size:11px;color:#53614e;margin-top:5px}
+.hp-voices .hp-more-voice{margin:28px 0 0;border-bottom:0}
+.hp-more-voice figure{margin-top:24px}
+.hp-more-voice blockquote{font-size:22px}
+.hp-conversation-body .hp-availability{font-size:13px;color:#dae1d3}
+.hp-offers ul{padding-left:18px;margin:0;list-style:disc}
+.hp-offers li{padding-left:2px;margin:7px 0}
+.hp-rates .hp-offer-name{font:22px/1.35 Georgia,serif;white-space:normal;min-width:0}
+.hp-offer-name small{display:block;font:12px/1.6 Arial,sans-serif;margin-top:8px;color:#53614e}
+.hp-offer-price{flex-shrink:0}
+.hp-rates .hb-heading{position:sticky;top:0;z-index:1;background:var(--cream);padding-block:8px}
+.hp-subpage{min-height:100vh;padding-top:90px}
+.hp-subpage main{padding-top:1px}
+.hp-subpage .hp-header{align-items:center}
+.hp-subpage .hp-nav{padding-top:0}
+.hp-subpage .hp-nav [aria-current=page]{text-decoration:underline;text-underline-offset:6px}
+.hp-profile h1,.hp-online h1{font:400 clamp(43px,5vw,68px)/1.12 Georgia,serif;letter-spacing:-1.9px;margin:0 0 22px}
+.hp-profile-intro{display:grid;grid-template-columns:1.05fr .85fr;gap:12%;align-items:center}
+.hp-profile-intro>img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:3px}
+.hp-profile .hp-profile-role{font-size:12px;letter-spacing:1px;margin-bottom:28px}
+.hp-profile-reading{max-width:64ch;margin:65px auto 0}
+.hp-profile-reading h2,.hp-online-reading h2{font-size:31px;letter-spacing:-.7px;margin:44px 0 22px}
+.hp-profile-reading p,.hp-online-reading p{margin:0 0 22px}
+.hp-own-story{margin:30px 0}
+.hp-profile-contact{border-top:1px solid #cbd2c3;margin-top:38px;padding-top:28px}
+.hp-online{max-width:980px}
+.hp-online-reading{max-width:65ch}
+.hp-online h1{margin-bottom:35px;font-size:clamp(39px,4.5vw,59px)}
+.hp-online-reading a:not(.hp-button){text-decoration:underline;text-underline-offset:4px}
+.hp-online-prices{margin-top:40px}
+.hp-online-prices .hp-offers dt{display:flex;align-items:start;justify-content:space-between;gap:22px;font:23px/1.35 Georgia,serif}
+.hp-online-prices .hp-offers>div{border-top:1px solid #cbd2c3;padding:26px 0}
+.hp-online-prices .hp-offers dd{margin:16px 0 0;font-size:14px}
+.hp-online-prices .hp-rates-note{font-size:13px}
+@media(max-width:700px){
+ .hp-profile-intro{grid-template-columns:1fr;gap:28px}
+ .hp-profile-intro>img{max-height:400px;object-position:50% 27%}
+ .hp-profile-reading{margin-top:42px}
+ .hp-profile-reading h2,.hp-online-reading h2{font-size:28px;margin-top:35px}
+ .hp-rates .hp-offers dt,.hp-online-prices .hp-offers dt{flex-direction:column;gap:10px}
+ .hp-rates .hp-offer-name{font-size:23px}
+ .hp-offer-price{font-size:20px!important}
+ .hp-more-voice blockquote{font-size:21px}
+ .hp-subpage{padding-top:75px}
+}

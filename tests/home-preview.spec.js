@@ -22,6 +22,9 @@ test('prices stay out of the reading flow and can be opened and dismissed access
  await expect(rates).toBeVisible();
  await expect(rates).toContainText('3 000 kr');
  await expect(rates).toContainText('8 000 kr');
+ await expect(rates).toContainText('Fyra individuella sessioner på 90 minuter');
+ await expect(rates).toContainText('Tre förinspelade sessioner');
+ await expect(rates).toContainText('Uppföljningssamtal på 30 minuter');
  await expect(page.getByRole('button',{name:'Stäng priser'})).toBeFocused();
  await page.keyboard.press('Escape');
  await expect(rates).not.toBeVisible();
@@ -105,4 +108,24 @@ test('navigation clears the sticky header and the optional video loads only on r
  await page.route('https://www.youtube-nocookie.com/**',r=>r.fulfill({body:'<p>Video test placeholder</p>',contentType:'text/html'}));
  await page.getByRole('button',{name:/Öppna introduktionen/}).click();
  await expect(page.locator('.hp-video iframe')).toHaveAttribute('src',/FYSi_FQKrp8/);
+});
+
+test('personal and practical pages keep the same first-contact flow and link to prices', async ({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ for(const path of ['/om-mig','/hypnoterapi-online']){
+  await page.goto(path);
+  await expect(page.getByRole('heading',{level:1})).toHaveCount(1);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.getByRole('button',{name:'Boka gratis konsultation',exact:true}).click();
+  await expect(page.getByLabel('Namn *',{exact:true})).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('button',{name:'Boka gratis konsultation',exact:true})).toBeFocused();
+ }
+ await page.getByRole('contentinfo').getByRole('link',{name:'Sessioner och priser'}).click();
+ await expect(page.getByRole('dialog',{name:'Sessioner och priser'})).toBeVisible();
+ await page.keyboard.press('Escape');
+ await page.goto('/hypnoterapi-online');
+ await page.locator('.hp-online-prices>summary').click();
+ await expect(page.locator('.hp-online-prices')).toContainText('8 000 kr');
+ await expect(page.locator('.hp-online-prices')).toContainText('Tre förinspelade sessioner');
 });

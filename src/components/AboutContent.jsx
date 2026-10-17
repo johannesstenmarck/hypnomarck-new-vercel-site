@@ -13,17 +13,15 @@ export default function AboutContent({ openBooking, headingLevel = "h1" }) {
               />
             </div>
             <div className="order-2 md:order-2">
-              <Heading className="text-3xl md:text-5xl font-serif text-white drop-shadow-lg mb-8 font-medium text-center md:text-left">Johannes Stenmarck – hypnoterapeut och förändringscoach</Heading>
-              <div className="space-y-4 text-white leading-relaxed drop-shadow-md text-lg md:text-xl font-medium">
+              <Heading className="text-3xl md:text-5xl font-serif text-white drop-shadow-lg mb-8 font-medium text-center md:text-left">Johannes Stenmarck – Hypnoterapeut och Coach</Heading>
+              <div className="space-y-4 text-white leading-relaxed text-lg font-normal">
                 <p>
-                  Johannes Stenmarck heter jag och jag är certifierad hypnoterapeut och coach med passion för att hjälpa människor hitta sin inre klarhet och
-                  kraft att förändra sina liv.
+                  Jag har varit skådespelare i över 20 år och är nyfiken på människans inre och på det vi ännu inte har gett uttryck för. Min egen erfarenhet av hypnos väckte viljan att själv utbilda mig och arbeta med andra.
                 </p>
                 <p>
-                  Mitt arbete handlar om att skapa utrymme för läkning – att hjälpa dig övervinna kreativa och emotionella blockeringar, stärka din självkänsla
-                  och självförtroende, och fördjupa dina relationer.
+                  Jag arbetar med coaching och personlig utveckling med hypnos som verktyg. Vi utgår från vad du upplever som begränsande och vad du vill kunna göra, känna eller välja annorlunda.
                 </p>
-                <p>Jag tror på förändring som sker inifrån – genom kontakt med det undermedvetna, där dina verkliga resurser finns.</p>
+                <p>Du väljer hur mycket du vill berätta och kan alltid säga nej, byta riktning eller pausa. Jag lyssnar och anpassar guidningen efter dig.</p>
                 <h2 className="text-2xl font-serif pt-4">Utbildning och certifiering</h2>
                 <p>Jag är certifierad inom Trancemorf Hypnoterapi av Dan och Sara Ahtola på Ahtola Vision.</p>
                 <h2 className="text-2xl font-serif pt-4">Så träffas vi</h2>

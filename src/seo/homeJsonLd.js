@@ -58,7 +58,7 @@ export function getProfileJsonLd() {
         "@type": "ProfilePage",
         "@id": `${SITE_URL}/om-mig#webpage`,
         url: `${SITE_URL}/om-mig`,
-        name: "Johannes Stenmarck – hypnoterapeut och förändringscoach",
+        name: "Johannes Stenmarck – Hypnoterapeut och Coach",
         inLanguage: "sv-SE",
         mainEntity: { "@id": `${SITE_URL}/#person` },
         isPartOf: { "@id": `${SITE_URL}/#website` }
