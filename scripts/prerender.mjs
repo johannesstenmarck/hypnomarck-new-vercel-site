@@ -28,6 +28,9 @@ try {
       .replace("</head>", `${head}\n</head>`)
       .replace('<div id="root"></div>', `<div id="root">${html}</div>`));
   }
+  // Keep the printed QR entry point directly reachable with Vercel clean URLs.
+  // It shares the home page document and opens the existing booking flow in React.
+  await writeFile(resolve("dist", "boka.html"), await readFile("dist/index.html", "utf8"));
   // Derive discovery URLs from the same route metadata; no invented lastmod dates.
   await writeFile("dist/sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${Object.values(PAGE_SEO).map(({path}) => `  <url><loc>${SITE_URL}${path}</loc></url>`).join("\n")}\n</urlset>\n`);
   console.log(`Prerendered ${Object.keys(PAGE_SEO).length} pages and sitemap.`);

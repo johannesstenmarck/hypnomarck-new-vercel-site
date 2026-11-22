@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation, Outlet } from "react-router-dom";
 import SiteNav from "./SiteNav.jsx";
 import SiteFooter from "./SiteFooter.jsx";
@@ -9,11 +9,22 @@ export default function SiteShell() {
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
+  const bookingEntryOpened = useRef(false);
   const location = useLocation();
-  const openBooking = () => {
+  const openBooking = useCallback(() => {
     setShowBookingModal(true);
     trackBookingEvent("booking_start");
-  };
+  }, []);
+
+  // Permanent entry point for printed QR codes; use the normal booking flow.
+  useEffect(() => {
+    if (location.pathname !== "/boka") {
+      bookingEntryOpened.current = false;
+    } else if (!bookingEntryOpened.current) {
+      bookingEntryOpened.current = true;
+      openBooking();
+    }
+  }, [location.pathname, openBooking]);
 
   useEffect(() => {
     const handleScroll = () => {
