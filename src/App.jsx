@@ -19,6 +19,7 @@ export default function App() {
           <Route path="emetofobi" element={<EmetofobiPage />} />
           <Route path="scenskrack" element={<ScenskrackPage />} />
           <Route index element={<HomePage />} />
+          <Route path="boka" element={<HomePage />} />
           <Route path="om-hypnos" element={<OmHypnosPage />} />
           <Route path="om-mig" element={<OmMigPage />} />
           <Route path="hypnoterapi-online" element={<OnlinePage />} />
